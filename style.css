@@ -53,4 +53,57 @@ body{
     color: #4CAF50;
 }
 
+.menu {
+    text-align: center;
+}
 
+.menu::after {
+    /* «clearfix», pour que le menu contienne les flottants */
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.menu .categorie {
+    box-sizing: border-box;
+    width: 25%;
+    float: left;
+    background: lightblue;
+    position: relative;  /* pour être la «racine» du sous-menu en absolute */
+}
+
+.menu .categorie ul {
+    display: none;
+    position: absolute;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;  /* pour avoir la même largeur que la «racine» */
+}
+
+.menu .categorie:hover ul {
+    display: block;
+}
+
+.menu h3,
+.menu a {
+    display: block;
+    margin: 0;
+    padding: .5em 1.5em;
+    font-size: inherit;
+    color: black;
+    background-color: lightblue;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.menu .categorie:hover h3 {
+    color: white;
+    background-color: steelblue;
+}
+
+.menu a:hover {
+    color: white;
+    background-color: skyblue;
+}
