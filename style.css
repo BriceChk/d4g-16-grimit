@@ -79,4 +79,24 @@ body{
     font-weight: 300;
 }
 
+.card {
+    height: 30%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px #4CAF50 solid;
+    background : #e0ebeb;
+}
 
+.cardheader {
+    height: 30%;
+
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+.cardcontainer {
+    padding: 2px 16px;
+    text-align: justify;
+}
