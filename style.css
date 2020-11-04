@@ -40,12 +40,9 @@ body{
 .wrap{
     width: 35%;
     position: absolute;
-    top: 20%;
+    margin-top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.wrap{
     text-align: center;
 }
 
@@ -53,57 +50,26 @@ body{
     color: #4CAF50;
 }
 
-.menu {
-    text-align: center;
+.vertical-menu {
+    width: 200px;
+    height: 150px;
+    overflow-y: auto;
+    margin-top: 20px;
 }
 
-.menu::after {
-    /* «clearfix», pour que le menu contienne les flottants */
-    display: block;
-    content: "";
-    clear: both;
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
 }
 
-.menu .categorie {
-    box-sizing: border-box;
-    width: 25%;
-    float: left;
-    background: lightblue;
-    position: relative;  /* pour être la «racine» du sous-menu en absolute */
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
 }
 
-.menu .categorie ul {
-    display: none;
-    position: absolute;
-    overflow: visible;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    width: 100%;  /* pour avoir la même largeur que la «racine» */
-}
-
-.menu .categorie:hover ul {
-    display: block;
-}
-
-.menu h3,
-.menu a {
-    display: block;
-    margin: 0;
-    padding: .5em 1.5em;
-    font-size: inherit;
-    color: black;
-    background-color: lightblue;
-    text-decoration: none;
-    box-sizing: border-box;
-}
-
-.menu .categorie:hover h3 {
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
     color: white;
-    background-color: steelblue;
-}
-
-.menu a:hover {
-    color: white;
-    background-color: skyblue;
 }
