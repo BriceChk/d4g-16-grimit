@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="d4g-16.bricechk.fr" id="9d6d56c9-c037-4b74-a533-d2fecad0f4b5" port="22" nameFormat="DESCRIPTIVE" username="debian" />
+    </configs>
+  </component>
+</project>
