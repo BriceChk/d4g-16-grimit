@@ -11,13 +11,14 @@ body{
 
 .searchTerm {
     width: 100%;
-    border: 3px solid #00B4CC;
+    border: 3px solid #4CAF50;
     border-right: none;
     padding: 5px;
-    height: 20px;
+    height: 30px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #9DBFAF;
+    font-size: 16px;
 }
 
 .searchTerm:focus{
@@ -25,22 +26,50 @@ body{
 }
 
 .searchButton {
-    width: 40px;
-    height: 36px;
-    border: 1px solid #00B4CC;
-    background: #00B4CC;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: #f2f2f2;
+    padding: 0px 32px;
     text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
 }
 
 /*Resize the wrap to see the search bar change!*/
 .wrap{
-    width: 30%;
+    width: 35%;
     position: absolute;
-    top: 50%;
+    margin-top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.wrap h1{
+    color: #4CAF50;
+}
+
+.vertical-menu {
+    width: 200px;
+    height: 150px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
 }
