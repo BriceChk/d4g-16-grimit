@@ -3,6 +3,15 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.title {
+    margin-top: 50px;
+}
+
+.title h1 {
+    text-align : center;
+    color : #4CAF50;
+}
+/*  SEARCH BAR  */
 .search {
     width: 100%;
     position: relative;
@@ -19,10 +28,7 @@ body{
     outline: none;
     color: #9DBFAF;
     font-size: 16px;
-}
-
-.searchTerm:focus{
-    color: #00B4CC;
+    box-sizing: content-box;
 }
 
 .searchButton {
@@ -35,26 +41,12 @@ body{
     display: inline-block;
     font-size: 14px;
 }
-
-/*Resize the wrap to see the search bar change!*/
-.wrap{
-    width: 35%;
-    position: absolute;
-    margin-top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.wrap h1{
-    color: #4CAF50;
-}
+/*  ------------  */
 
 .vertical-menu {
-    width: 200px;
-    height: 150px;
+    height: 240px;
     overflow-y: auto;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .vertical-menu a {
@@ -73,3 +65,4 @@ body{
     background-color: #4CAF50; /* Add a green color to the "active/current" link */
     color: white;
 }
+
