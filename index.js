@@ -5,6 +5,10 @@ const path = require('path');
 const host = '146.59.196.41';
 const port = 80;
 
+//Required package
+var pdf = require("pdf-creator-node");
+var fs = require('fs');
+
 //TODO mettre à jour nb_clicks
 
 const server = http.createServer((req, res) => {
@@ -169,6 +173,76 @@ const server = http.createServer((req, res) => {
 
                         // là t'as region, dep et com pour accéder à leur propriétés
 
+                        // Read HTML Template
+                        var html = fs.readFileSync('index.html', 'utf8');
+
+                        var options = {
+                            format: "A4",
+                            orientation: "portrait",
+                            border: "10mm",
+                            header: {
+                                height: "45mm",
+                                contents: '<div style="text-align: center;">Digital Fragility Index</div>'
+                            },
+                            "footer": {
+                                "height": "28mm",
+                                "contents": {
+                                    first: 'First page - Team 16',
+                                    default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+                                    last: 'Last Page - Team 16'
+                                }
+                            }
+                        };
+
+                        var donnees_C = [
+                            {
+                                sg_C: ,
+                                iainf_C: ,
+                                iainum_C: ,
+                                icadm_C: ,
+                                icnum_C:
+                            }
+                        ]
+
+                        var donnees_D = [
+                            {
+                                sg_D:dept.score_global,
+                                iainf_D:dept.indice_acces_info,
+                                iainum_D:dept.indice_acces_interf_num,
+                                icadm_D:dept.indice_competences_admin,
+                                icnum_D:dept.indice_competences_num
+                            }
+                        ]
+
+                        var donnees_R = [
+                            {
+                                sg_R:region.score_global,
+                                iainf_R:region.indice_acces_info,
+                                iainum_R:region.indice_acces_interf_num,
+                                icadm_R:region.indice_competences_admin,
+                                icnum_R:region.indice_competences_num
+                            }
+                        ]
+
+                        var document = {
+                            html: html,
+                            data: {
+                                donnees_C: donnees_C,
+                                donnees_D: donnees_D,
+                                donnees_R: donnees_R,
+                            },
+                            path: "./DigitalFragilityIndex.pdf"
+                        };
+
+                        pdf.create(document, options)
+                            .then(res => {
+                                console.log(res) //CA CA PUE LA MERDE MAIS COMMENT FAIRE????
+                            })
+                            .catch(error => {
+                                console.error(error)
+                            });
+
+
                         res.end("Le pdf");
                     } else {
                         res.end("Commune pas trouvé");
@@ -180,7 +254,7 @@ const server = http.createServer((req, res) => {
                 res.end('Region pas trouvée');
             }
         } else {
-            res.end("Pas les bons parametres");
+            res.end("Pas les bons paramètres");
         }
     } else {
         let filePath = '.' + req.url;
