@@ -22,6 +22,12 @@
     <div class="container">
         <div class="title">
             <h1>INDICE DE FRAGILITÉ NUMÉRIQUE</h1>
+            <p>
+                Cet indice permet d’obtenir une projection des zones en risque de fragilité numérique, d’identifier et catégoriser les zones de fragilité numérique selon différents critères. Il constitue ainsi un outil d’aide à la décision et de mobilisation des acteurs de l’inclusion numérique sur leur territoire.
+            </p>
+            <p>
+                L'indice est calculé à l'aide de quatre variables : l'accès à l'information, l'accès aux interfaces numériques, la capacité d'usage des interfaces numériques et les compétences administratives, en prenant la région comme point de référence.
+            </p>
         </div>
 
         <div class="row">
@@ -68,7 +74,7 @@
                 </div>
 
                 <div class="col-xl">
-                    <div class="card-aze" id="coms-list-card">
+                    <div class="card-aze">
                         <h2>Communes</h2>
                         <div class="vertical-menu" id="coms-list">
                             <span>Choisissez une région</span>
@@ -244,6 +250,7 @@
                         s += '<span onclick="loadComs(this)">' + j.departements[i] + '</span>';
                     }
                     deptList.innerHTML = s;
+                    deptList.scrollIntoView({behavior: 'smooth', block: 'center'});
 
                     let regions = document.getElementById('region-list').getElementsByTagName('span');
 
@@ -288,6 +295,7 @@
                         s += '<span id="' + k + '" onclick="loadCom(' + k + ', this)">' + j.communes[k] + '</span>';
                     });
                     comList.innerHTML = s;
+                    comList.scrollIntoView({behavior: 'smooth', block: 'center'});
 
                     let depts = document.getElementById('dept-list').getElementsByClassName('active');
 
@@ -337,6 +345,15 @@
                         coms[i].classList.remove('active');
                     }
 
+                    // Ajout à l'historique
+                    let hist = document.getElementById('history-list');
+                    let s = '<span onclick="loadFromHistory(\'' + nomReg + '\', \'' + nomDept + '\', \'' + idCom + '\', \'' + nomComIris + '\')">' + nomComIris + '</span>';
+                    if (hist.innerText === 'Historique vide') {
+                        hist.innerHTML = s;
+                    } else {
+                        hist.innerHTML += s;
+                    }
+
                     el.classList.add("active");
                 }
             }
@@ -344,8 +361,51 @@
             xmlHttp.send();
         }
 
+        function loadFromHistory(nomReg, nomDept, idCom, nomComIris) {
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    let j = JSON.parse(xmlHttp.responseText);
+
+                    document.getElementById('com-name').textContent = nomComIris;
+                    document.getElementById('com-score').textContent = j.commune.score_global;
+                    document.getElementById('com-acces-info').textContent = j.commune.indice_acces_info;
+                    document.getElementById('com-if-num').textContent = j.commune.indice_acces_interf_num;
+                    document.getElementById('com-cap-if').textContent = j.commune.indice_competences_num;
+                    document.getElementById('com-comp-admin').textContent = j.commune.indice_competences_admin;
+                    let card = document.getElementById('com-card');
+                    card.style.display = "";
+                    card.scrollIntoView({behavior: 'smooth', block: 'center'});
+
+                    document.getElementById('dept-name').textContent = nomDept;
+                    document.getElementById('dept-score').textContent = j.departement.score_global;
+                    document.getElementById('dept-acces-info').textContent = j.departement.indice_acces_info;
+                    document.getElementById('dept-if-num').textContent = j.departement.indice_acces_interf_num;
+                    document.getElementById('dept-cap-if').textContent = j.departement.indice_competences_num;
+                    document.getElementById('dept-comp-admin').textContent = j.departement.indice_competences_admin;
+                    card = document.getElementById('dept-card');
+                    card.style.display = "";
+
+                    document.getElementById('reg-name').textContent = nomReg;
+                    document.getElementById('region-score').textContent = j.region.score_global;
+                    document.getElementById('region-acces-info').textContent = j.region.indice_acces_info;
+                    document.getElementById('region-if-num').textContent = j.region.indice_acces_interf_num;
+                    document.getElementById('region-cap-if').textContent = j.region.indice_competences_num;
+                    document.getElementById('region-comp-admin').textContent = j.region.indice_competences_admin;
+                    card = document.getElementById('region-card');
+                    card.style.display = "";
+
+                    // Sélectionner la bonne région
+                    // Charger le bon département + le sélectionner
+                    // Afficher que cette ville dans la liste des communes
+                }
+            }
+            xmlHttp.open('GET', '/commune?region=' + nomReg + '&departement=' + nomDept + '&commune=' + idCom, true);
+            xmlHttp.send();
+        }
+
         function toggleHistory() {
-            let hist = document.getElementById('history-list');
+            let hist = document.getElementById('history-card');
             if (hist.style.display === 'none') {
                 hist.style.display = '';
             } else {

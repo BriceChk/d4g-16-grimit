@@ -76,8 +76,7 @@ const server = http.createServer(options, (req, res) => {
                     let rechCom = searchObj['commune'].replaceAll('+', ' ');
                     if (rechCom in dep.communes) {
                         let com = dep.communes[rechCom];
-
-                        delete region.departements;
+                        region.departements = Object.keys(region.departements);
                         delete dep.communes;
 
                         region.nom_reg = rechReg;
