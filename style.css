@@ -31,16 +31,6 @@ body{
     box-sizing: content-box;
 }
 
-.searchButton {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: #f2f2f2;
-    padding: 0px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-}
 
 
 .vertical-menu {
@@ -93,7 +83,6 @@ body{
 .card-body {
     background-color: #eee;
     padding: 1em 50px ;
-
 }
 
 .card {
@@ -107,7 +96,6 @@ body{
 
 .button {
     background-color: #4CAF50;
-    border: none;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -115,12 +103,18 @@ body{
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    cursor: pointer;
+    border: 3px solid #4CAF50;
+}
+
+#search {
+    position: relative;
+}
+
+#search-history{
     position: fixed;
     right: 50px;
     bottom: 50px;
     box-shadow:1px 1px 3px #999;
-    border: 3px solid #4CAF50;
 }
 
 button:hover {

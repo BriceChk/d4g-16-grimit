@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="758a3105-35ce-4d51-a062-0a662ad791e4" name="vps d4g" url="http://d4g-16.bricechk.fr/">
-        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="d4g-16.bricechk.fr" port="22" sshConfigId="9d6d56c9-c037-4b74-a533-d2fecad0f4b5" sshConfig="debian@d4g-16.bricechk.fr:22 password">
+        <fileTransfer rootFolder="/home/debian" accessType="SFTP" host="d4g-16.bricechk.fr" port="22" sshConfigId="9d6d56c9-c037-4b74-a533-d2fecad0f4b5" sshConfig="debian@d4g-16.bricechk.fr:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
