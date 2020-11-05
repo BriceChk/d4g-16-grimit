@@ -29,53 +29,35 @@
                     <div class="col-md">
                         <h2> Régions </h2>
                         <div class="vertical-menu">
-                            <span>AUVERGNE RHONE ALPES</span>
-                            <span>BRETAGNE</span>
-                            <span>BOURGOGNE FRANCHE COMTE</span>
-                            <span>CENTRE VAL DE LOIRE</span>
-                            <span>CORSE</span>
-                            <span>GRAND EST</span>
-                            <span>HAUTS DE FRANCE</span>
-                            <span>ILE DE FRANCE</span>
-                            <span>LA REUNION</span>
-                            <span>MARTINIQUE</span>
-                            <span>NORMANDIE</span>
-                            <span>NOUVELLE AQUITAINE</span>
-                            <span>OCCITANIE</span>
-                            <span>PAYS DE LA LOIRE</span>
-                            <span>PROVENCE ALPES COTE D AZUR</span>
+                            <span onclick="loadDeps(this)">AUVERGNE RHONE ALPES</span>
+                            <span onclick="loadDeps(this)">BRETAGNE</span>
+                            <span onclick="loadDeps(this)">BOURGOGNE FRANCHE COMTE</span>
+                            <span onclick="loadDeps(this)">CENTRE VAL DE LOIRE</span>
+                            <span onclick="loadDeps(this)">CORSE</span>
+                            <span onclick="loadDeps(this)">GRAND EST</span>
+                            <span onclick="loadDeps(this)">HAUTS DE FRANCE</span>
+                            <span onclick="loadDeps(this)">ILE DE FRANCE</span>
+                            <span onclick="loadDeps(this)">LA REUNION</span>
+                            <span onclick="loadDeps(this)">MARTINIQUE</span>
+                            <span onclick="loadDeps(this)">NORMANDIE</span>
+                            <span onclick="loadDeps(this)">NOUVELLE AQUITAINE</span>
+                            <span onclick="loadDeps(this)">OCCITANIE</span>
+                            <span onclick="loadDeps(this)">PAYS DE LA LOIRE</span>
+                            <span onclick="loadDeps(this)">PROVENCE ALPES COTE D AZUR</span>
                         </div>
                     </div>
 
                     <div class="col-md">
                         <h2>Départements</h2>
                         <div class="vertical-menu">
-                            <span>Département 1</span>
-                            <span>Département 2</span>
-                            <span>Département 3</span>
-                            <span>Département 4</span>
-                            <span>Département 5</span>
-                            <span>Département 6</span>
-                            <span>Département 7</span>
-                            <span>Département 8</span>
-                            <span>Département 9</span>
-                            <span>Département 10</span>
+                            <span>Choisissez une région</span>
                         </div>
                     </div>
 
                     <div class="col-md">
                         <h2>Communes</h2>
                         <div class="vertical-menu">
-                            <span>Ville 1</span>
-                            <span>Ville 2</span>
-                            <span>Ville 3</span>
-                            <span>Ville 4</span>
-                            <span>Ville 5</span>
-                            <span>Ville 6</span>
-                            <span>Ville 7</span>
-                            <span>Ville 8</span>
-                            <span>Ville 9</span>
-                            <span>Ville 10</span>
+                            <span>Choisissez une région</span>
                         </div>
                     </div>
                 </div>
@@ -128,8 +110,20 @@
             </div>
         </div>
 
+        <script>
+            function loadDeps(el) {
+                let nomReg = el.textContent;
+
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                        var j = JSON.parse(xmlHttp.responseText);
+                    }
+                }
+                xmlHttp.open('GET', '/departements?region=' + nomReg, true);
+                xmlHttp.send();
+            }
+        </script>
     <button class="button" id="search-history">Search History</button>
     </body>
 </html>
-
-
