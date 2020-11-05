@@ -41,8 +41,12 @@ const server = http.createServer((req, res) => {
                             }
                         });
                         if (found) {
-                            r.region = k;
-                            r.departement = kk;
+                            delete region.departements;
+                            region.nom_reg = k;
+                            r.region = region;
+                            delete dept.communes;
+                            dept.nom_dep = kk;
+                            r.departement = dept;
                             res.end(JSON.stringify(r));
                             throw new Error('break');
                         }
