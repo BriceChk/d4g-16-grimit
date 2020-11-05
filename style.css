@@ -117,7 +117,15 @@ body{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    right: 80%;
-    left: 80%;
     position: fixed;
+    right: 50px;
+    bottom: 50px;
+    box-shadow:1px 1px 3px #999;
+    border: 3px solid #4CAF50;
+}
+
+button:hover {
+    border: 3px solid #4CAF50;
+    color: #4CAF50;
+    background: #eee;
 }
