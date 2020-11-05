@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="col-xl">
-                        <div class="card-aze">
+                        <div class="card-aze" id="coms-list-card">
                             <h2>Communes</h2>
                             <div class="vertical-menu" id="coms-list">
                                 <span>Choisissez une région</span>
@@ -183,6 +183,7 @@
                             s += '<span onclick="loadCom(' + k + ', this)">' + j.communes[k].nom_com + " (" + j.communes[k].nom_iris + ")" + '</span>';
                         });
                         comList.innerHTML = s;
+                        comList.scrollIntoView({behavior: 'smooth', block: 'center'});
 
 
                     }
