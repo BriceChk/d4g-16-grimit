@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <mate charest="utf-8" />
+        <link rel="stylesheet" href="style.css">
+        <title>Indice de fragilité numérique</title>
+    </head>
+    <style>
+        body{
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1 {
+          color: #4CAF50;
+        }
+        p {
+          color: #4CAF50;
+          font-style: italic;
+        }
+        li {
+            font-weight: bold;
+        }
+        </style>
+    <body>
+        <h1>Indice de fragilité numérique - "VILLE DE MONTCUQ" {{this.nom_com}}</h1>
+        <ul>
+            <h2>Résultats à l'échelle de la commune</h2>
+            <li>Score global : {{this.score_globalC}}</li><br>
+            <li>Accès à l'information : {{this.indice_access_infoC}}</li>
+            <p>Cet indice identifie les territoires mal couverts par les services d'information ou des populations qui auraient des difficultés à comprendre l'information.</p>
+            <li>Accès aux interfaces numériques : {{this.indice_access_interf_numC}}</li>
+            <p>Correspond aux territoires mal couverts par les services numériques ou des populations qui auraient des difficultés financières à y accéder.</p>
+            <li>Capacité d'usage des interfaces numériques : {{this.indice_access_interf_numC}}</li>
+            <p>Identifier des populations parmi lesquelles s'observent des difficultés à utiliser internet ou les outils numériques.</p>
+            <li>Compétences administratives : {{this.indice_competences_adminC}}</li>
+            <p>Identifier des populations parmi lesquelles s'observent des difficultés à accomplir des procédures administratives.</p>
+            <br>
+        </ul>
+        <ul>
+            <h2>Pour le département : {{this.nom_dep}}</h2>
+            <li>Score global : {{this.score_globalD}}</li>
+            <li>Accès à l'information : {{this.indice_access_infoD}}</li>
+            <li>Accès aux interfaces numériques : {{this.indice_access_interf_numD}}</li>
+            <li>Capacité d'usage des interfaces numériques : {{this.indice_access_interf_numD}}</li>
+            <li>Compétences administratives : {{this.indice_competences_adminD}}</li>
+            <br>
+        </ul>
+        <ul>
+            <h2>Pour la région : {{this.nom_reg}}</h2>
+            <li>Score global : {{this.score_globalR}}</li>
+            <li>Accès à l'information : {{this.indice_access_infoR}}</li>
+            <li>Accès aux interfaces numériques : {{this.indice_access_interf_numR}}</li>
+            <li>Capacité d'usage des interfaces numériques : {{this.indice_competences_numR}}</li>
+            <li>Compétences administratives : {{this.indice_competences_adminR}}</li>
+            <br>
+        </ul>
+    </body>
+</html>
