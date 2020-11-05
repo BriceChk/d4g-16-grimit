@@ -29,21 +29,21 @@
                     <div class="col-md">
                         <h2> Régions </h2>
                         <div class="vertical-menu">
-                            <span>AUVERGNE RHONE ALPES</span>
-                            <span>BRETAGNE</span>
-                            <span>BOURGOGNE FRANCHE COMTE</span>
-                            <span>CENTRE VAL DE LOIRE</span>
-                            <span>CORSE</span>
-                            <span>GRAND EST</span>
-                            <span>HAUTS DE FRANCE</span>
-                            <span>ILE DE FRANCE</span>
-                            <span>LA REUNION</span>
-                            <span>MARTINIQUE</span>
-                            <span>NORMANDIE</span>
-                            <span>NOUVELLE AQUITAINE</span>
-                            <span>OCCITANIE</span>
-                            <span>PAYS DE LA LOIRE</span>
-                            <span>PROVENCE ALPES COTE D AZUR</span>
+                            <span onclick="loadDeps(this)">AUVERGNE RHONE ALPES</span>
+                            <span onclick="loadDeps(this)">BRETAGNE</span>
+                            <span onclick="loadDeps(this)">BOURGOGNE FRANCHE COMTE</span>
+                            <span onclick="loadDeps(this)">CENTRE VAL DE LOIRE</span>
+                            <span onclick="loadDeps(this)">CORSE</span>
+                            <span onclick="loadDeps(this)">GRAND EST</span>
+                            <span onclick="loadDeps(this)">HAUTS DE FRANCE</span>
+                            <span onclick="loadDeps(this)">ILE DE FRANCE</span>
+                            <span onclick="loadDeps(this)">LA REUNION</span>
+                            <span onclick="loadDeps(this)">MARTINIQUE</span>
+                            <span onclick="loadDeps(this)">NORMANDIE</span>
+                            <span onclick="loadDeps(this)">NOUVELLE AQUITAINE</span>
+                            <span onclick="loadDeps(this)">OCCITANIE</span>
+                            <span onclick="loadDeps(this)">PAYS DE LA LOIRE</span>
+                            <span onclick="loadDeps(this)">PROVENCE ALPES COTE D AZUR</span>
                         </div>
                     </div>
 
@@ -129,5 +129,13 @@
         </div>
 
     <button class="button">Button</button>
+
+        <script>
+            function loadDeps(el) {
+                let nomReg = el.textContent;
+                console.log(nomReg);
+            }
+
+        </script>
     </body>
 </html>
