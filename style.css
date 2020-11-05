@@ -50,8 +50,7 @@ body{
 }
 
 .vertical-menu span.active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ccc;
 }
 
 .menu{
@@ -102,7 +101,6 @@ body{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     border: 3px solid #4CAF50;
 }
 

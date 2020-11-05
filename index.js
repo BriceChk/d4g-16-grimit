@@ -131,7 +131,7 @@ const server = http.createServer((req, res) => {
             let r = {};
             r.communes = {};
             let bdd = getBdd();
-            let nomRegion = searchObj['region'];
+            let nomRegion = searchObj['region'].replaceAll('+', ' ');
             let nomDept = searchObj['departement'].replaceAll('+', ' ');
             if (nomRegion in bdd) {
                 let region = bdd[nomRegion];
@@ -139,7 +139,7 @@ const server = http.createServer((req, res) => {
                     let dept = region.departements[nomDept];
                     let comms = dept.communes;
                     Object.keys(comms).forEach(k =>  {
-                        r.communes[k] = comms[k].nom_com;
+                        r.communes[k] = comms[k].nom_com + ' (' + comms[k].nom_iris + ')';
                     });
 
                     r.score_global = dept.score_global;
