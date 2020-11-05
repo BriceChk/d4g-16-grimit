@@ -1,6 +1,7 @@
 body{
     background: #23272F;
     font-family: 'Open Sans', sans-serif;
+    color: #F3F4F6;
 }
 
 .title {
@@ -29,7 +30,6 @@ body{
     width: 100%;
     height: 100%;
     padding: 0 10px;
-    color: #F3F4F6;
     font-size: 18px;
     font-weight: 300;
     border: none;
@@ -37,7 +37,6 @@ body{
 }
 .search button{
     padding: 0 15px;
-    color: #F3F4F6;
     font-size: 16px;
     font-weight: 200;
     background: #305E5F;
@@ -55,7 +54,6 @@ body{
 
 .vertical-menu span {
 
-    color: #F3F4F6;
     display: block;
     padding: 12px;
     text-decoration: none;
@@ -66,7 +64,6 @@ body{
 
 .vertical-menu span.active {
     background-color: #448484;
-    color: #F3F4F6;
 }
 
 .menu{
@@ -76,7 +73,6 @@ body{
 .menu h2, .card h2 {
     border-radius : 4px 4px 0 0;
     background-color: #305E5F;
-    color: #F3F4F6;
     display: block;
     margin-block-end: 0;
     padding: 10px;
@@ -88,13 +84,11 @@ body{
 .card h3 {
     font-size: 15px;
     margin-bottom: 10px;
-    color: #F3F4F6;
 }
 
 .card p {
     margin-left : 10px;
     margin-right: 20px;
-    color: #F3F4F6;
 
 }
 
@@ -120,7 +114,6 @@ body{
 
 .button {
     background-color: #305E5F;
-    color: white;
     padding: 10px 10px;
     text-align: center;
     text-decoration: none;
@@ -130,6 +123,9 @@ body{
     border-radius : 3px;
 }
 
+.pdf {
+    background-color: #BD2008;
+}
 
 #search-history{
     position: fixed;
