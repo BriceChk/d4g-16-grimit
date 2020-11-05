@@ -19,8 +19,43 @@ const server = http.createServer((req, res) => {
     var searchObj = JSON.parse('{"' + decodeURI(params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 
     if (req_path === "search") {
+        if ('code_postal' in searchObj) {
+            let rech = parseInt(searchObj['code_postal']);
+            let bdd = getBdd();
+            let r = {};
+            r.communes = {};
+            let found = false;
+            try {
+                Object.keys(bdd).forEach(k => {
+                    let region = bdd[k];
+                    Object.keys(region.departements).forEach(kk => {
+                        let dept = region.departements[kk];
 
-    } else if (req_path === "depts") {
+                        Object.keys(dept.communes).forEach(kkk => {
+                            let com = dept.communes[kkk];
+                            if (com.code_postal === rech){
+                                r.communes[kkk] = com;
+                                found = true;
+                            }
+                        });
+                        if (found) {
+                            r.region = k;
+                            r.departement = kk;
+                            res.end(JSON.stringify(r));
+                            throw new Error('break');
+                        }
+                    });
+                });
+            } catch (e) {
+                if (e.message !== 'break') throw e;
+            }
+            if (!found) {
+                res.end("Pas trouvé");
+            }
+        } else {
+            res.end("Pas les bons parametres");
+        }
+    } else if (req_path === "departements") {
         if ('region' in searchObj) {
             let r = {};
             r.departements = [];
@@ -47,7 +82,7 @@ const server = http.createServer((req, res) => {
         } else {
             //TODO msg erreur pas le bon param
         }
-    } else if (req_path === "coms") {
+    } else if (req_path === "communes") {
         if ('departement' in searchObj && 'region' in searchObj) {
             let r = {};
             r.communes = {};
