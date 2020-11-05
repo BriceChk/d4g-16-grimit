@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require('path');
 // Definition du port d'écoute
 const port = 80;
-const host = 'd4g-16.bricechk.fr';
+const host = '146.59.196.41';
 /*
     Création du serveur (createServer)
     Fonction qui gère les requetes
@@ -45,10 +45,40 @@ const server = http.createServer((req, res) => {
                 //TODO msg erreur region non trouvée
             }
         } else {
-            //TODO msg erreur
+            //TODO msg erreur pas le bon param
         }
     } else if (req_path === "coms") {
+        if ('departement' in searchObj && 'region' in searchObj) {
+            let r = {};
+            r.communes = {};
+            let bdd = getBdd();
+            let nomRegion = searchObj['region'];
+            let nomDept = searchObj['departement'].replaceAll('+', ' ');
+            if (nomRegion in bdd) {
+                let region = bdd[nomRegion];
+                if (nomDept in region.departements) {
+                    let dept = region.departements[nomDept];
+                    let comms = dept.communes;
+                    Object.keys(comms).forEach(k =>  {
+                        r.communes[k] = comms[k].nom_com;
+                    });
 
+                    r.score_global = dept.score_global;
+                    r.indice_acces_info = dept.indice_acces_info;
+                    r.indice_acces_interf_num = dept.indice_acces_interf_num;
+                    r.indice_competences_admin = dept.indice_competences_admin;
+                    r.indice_competences_num = dept.indice_competences_num;
+
+                    res.end(JSON.stringify(r));
+                } else {
+                    res.end("Departement pas trouvé.");
+                }
+            } else {
+                res.end("Region pas trouvée.");
+            }
+        } else {
+            res.end("Pas les bons parametres");
+        }
     } else if (req_path === "pdf") {
 
     } else {
