@@ -88,9 +88,8 @@ body{
     background : #e0ebeb;
 }
 
-.cardheader {
-    height: 30%;
-
+.card-header {
+    height: 40%;
     background: #4CAF50;
     color: white;
     text-align: center;
@@ -99,4 +98,8 @@ body{
 .cardcontainer {
     padding: 2px 16px;
     text-align: justify;
+}
+
+li{
+    list-style-type: none;
 }
