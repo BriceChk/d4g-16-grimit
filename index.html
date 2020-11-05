@@ -11,19 +11,22 @@
     </head>
 
     <body>
+    <div class="div_pop_up">
+        Nous utilisons des cookies pour offrir une meilleure éxpérience. Nous ne collectons ni utilison aucune de vos données
+        <button class="button">Accepter</button>
+        <button class="button">Refuser</button>
+    </div>
 
         <div class="container">
             <div class="title">
-                <h1>DIGITAL FRAGILITY INDEX</h1>
+                <h1>INDEX DE FRAGILITÉ NUMÉRIQUE</h1>
             </div>
 
             <div class="row">
                 <div class="col-xl">
                     <div class="search">
                         <input type="text" class="searchTerm" placeholder="Code postal" id="searchbox">
-                        <button onclick="search()" class="button">
-                            Rechercher
-                        </button>
+                        <button onclick="search()" class="button">Rechercher</button>
                     </div>
                 </div>
             </div>
@@ -63,7 +66,7 @@
                     </div>
 
                     <div class="col-xl">
-                        <div class="card-aze">
+                        <div class="card-aze" id="coms-list-card">
                             <h2>Communes</h2>
                             <div class="vertical-menu" id="coms-list">
                                 <span>Choisissez une région</span>
@@ -90,6 +93,7 @@
 
                                     <h3>Compétences administratifs : <span id="com-comp-admin"></span></h3>
                                     <p>Identifier des populations parmi lesquelles s'observent des difficultés à accomplir des procédures administratives.</p>
+                                        <button class="button pdf">Enregistrer en PDF</button>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +130,15 @@
         </div>
 
         <script>
+
+            window.onload = function () {
+                document.getElementById('searchbox').addEventListener("keyup", function (e) {
+                    if (e.key === 'Enter') {
+                        search();
+                    }
+                })
+            }
+
             function search() {
                 let rech = document.getElementById('searchbox').value;
                 let xmlHttp = new XMLHttpRequest();
@@ -184,7 +197,13 @@
                         });
                         comList.innerHTML = s;
 
-
+                        if (j.communes.length === 1) {
+                            let el = comList.getElementsByTagName('span')[0];
+                            let id = Object.keys(j.communes)[0];
+                            loadCom(id, el);
+                        } else {
+                            comList.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        }
                     }
                 }
                 xmlHttp.open('GET', '/search?code_postal=' + rech, true);
@@ -223,6 +242,7 @@
                                 regions[i].classList.remove('active');
                             }
                         }
+                        document.getElementById('coms-list').innerHTML = '<span>Choisissez un département</span>';
 
                         document.getElementById('dept-card').style.display = "none";
                         document.getElementById('com-card').style.display = "none";
@@ -289,6 +309,7 @@
                         document.getElementById('com-comp-admin').textContent = j.commune.indice_competences_admin;
                         let card = document.getElementById('com-card');
                         card.style.display = "";
+                        card.scrollIntoView({behavior: 'smooth', block: 'center'});
 
                         let coms = document.getElementById('coms-list').getElementsByClassName('active');
 

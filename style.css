@@ -141,10 +141,3 @@ body{
 button:hover {
     background-color: #305E5F;
 }
-
-.card-history {
-    box-shadow: 0 0 5px #1A1D23;
-    position: fixed;
-    right: 20px;
-    bottom: 60px;
-}
