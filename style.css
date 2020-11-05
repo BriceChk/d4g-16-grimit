@@ -162,6 +162,10 @@ button:hover {
 }
 
 .div_pop_up{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
     text-align: center;
     background: #2C313A;
     padding: 1em 0 .1em 0;
