@@ -12,341 +12,346 @@
 
     <body>
     <div class="div_pop_up">
-        Nous utilisons des cookies pour offrir une meilleure éxpérience. Nous ne collectons ni utilison aucune de vos données
-        <button class="button">Accepter</button>
-        <button class="button">Refuser</button>
+        Nous utilisons des cookies pour offrir une meilleure expérience. Nous ne collectons ni utilisons aucune de vos données.
+        <p>
+            <button class="button">Accepter</button>
+            <button class="button">Refuser</button>
+        </p>
     </div>
 
-        <div class="container">
-            <div class="title">
-                <h1>INDEX DE FRAGILITÉ NUMÉRIQUE</h1>
-            </div>
+    <div class="container">
+        <div class="title">
+            <h1>INDICE DE FRAGILITÉ NUMÉRIQUE</h1>
+        </div>
 
-            <div class="row">
-                <div class="col-xl">
-                    <div class="search">
-                        <input type="text" class="searchTerm" placeholder="Code postal" id="searchbox">
-                        <button onclick="search()" class="button">Rechercher</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu">
-                <div class="row">
-                    <div class="col-xl">
-                        <div class="card-aze">
-                            <h2> Régions </h2>
-                            <div class="vertical-menu" id="region-list">
-                                <span onclick="loadDeps(this.textContent)">AUVERGNE RHONE ALPES</span>
-                                <span onclick="loadDeps(this.textContent)">BRETAGNE</span>
-                                <span onclick="loadDeps(this.textContent)">BOURGOGNE FRANCHE COMTE</span>
-                                <span onclick="loadDeps(this.textContent)">CENTRE VAL DE LOIRE</span>
-                                <span onclick="loadDeps(this.textContent)">CORSE</span>
-                                <span onclick="loadDeps(this.textContent)">GRAND EST</span>
-                                <span onclick="loadDeps(this.textContent)">HAUTS DE FRANCE</span>
-                                <span onclick="loadDeps(this.textContent)">ILE DE FRANCE</span>
-                                <span onclick="loadDeps(this.textContent)">LA REUNION</span>
-                                <span onclick="loadDeps(this.textContent)">MARTINIQUE</span>
-                                <span onclick="loadDeps(this.textContent)">NORMANDIE</span>
-                                <span onclick="loadDeps(this.textContent)">NOUVELLE AQUITAINE</span>
-                                <span onclick="loadDeps(this.textContent)">OCCITANIE</span>
-                                <span onclick="loadDeps(this.textContent)">PAYS DE LA LOIRE</span>
-                                <span onclick="loadDeps(this.textContent)">PROVENCE ALPES COTE D AZUR</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl">
-                        <div class="card-aze">
-                            <h2>Départements</h2>
-                            <div class="vertical-menu" id="dept-list">
-                                <span>Choisissez une région</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl">
-                        <div class="card-aze" id="coms-list-card">
-                            <h2>Communes</h2>
-                            <div class="vertical-menu" id="coms-list">
-                                <span>Choisissez une région</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="row" style="display: none" id="com-card">
-                        <div class="col-xl">
-                            <div class="card-aze">
-                                <h2><span id="com-name"></span> : <span id="com-score">42</span></h2>
-                                <div class="card-body">
-                                    <p id="header-line"> Votre score est parmi les plus faible du pays. Pas de chance les bouffons</p>
-                                    <h3>Accès à l'information : <span id="com-acces-info"></span></h3>
-                                    <p>Cet indice identifie les territoires mal couverts par les services d'information ou des populations qui auraient des difficultés à comprendre l'information.</p>
-
-                                    <h3>Accès aux interfaces numériques : <span id="com-if-num"></span></h3>
-                                    <p>Correspond aux territoires mal couverts par les services numériques ou des populations qui auraient des difficultés financières à y acceder .</p>
-
-                                    <h3>Capacité d'usage des interfaces numériques : <span id="com-cap-if"></span></h3>
-                                    <p>Identifier des populations parmi lesquelles s'observent des difficultés à utiliser internet ou les outils numériques.</p>
-
-                                    <h3>Compétences administratifs : <span id="com-comp-admin"></span></h3>
-                                    <p>Identifier des populations parmi lesquelles s'observent des difficultés à accomplir des procédures administratives.</p>
-                                        <button class="button pdf">Enregistrer en PDF</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl" style="display: none" id="region-card">
-                            <div class="card-aze">
-                                <h2><span id="reg-name"></span> : <span id="region-score">42</span></h2>
-                                <div class="card-body">
-                                    <h3>Accès à l'information : <span id="region-acces-info"></span></h3>
-                                    <h3>Accès aux interfaces numériques : <span id="region-if-num"></span></h3>
-                                    <h3>Capacité d'usage des interfaces numériques : <span id="region-cap-if"></span></h3>
-                                    <h3>Compétences administratifs : <span id="region-comp-admin"></span></h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl" style="display: none" id="dept-card">
-                            <div class="card-aze">
-                                <h2><span id="dept-name"></span> : <span id="dept-score">42</span></h2>
-                                <div class="card-body">
-                                    <h3>Accès à l'information : <span id="dept-acces-info"></span></h3>
-                                    <h3>Accès aux interfaces numériques : <span id="dept-if-num"></span></h3>
-                                    <h3>Capacité d'usage des interfaces numériques : <span id="dept-cap-if"></span></h3>
-                                    <h3>Compétences administratifs : <span id="dept-comp-admin"></span></h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+        <div class="row">
+            <div class="col-xl">
+                <div class="search">
+                    <input type="text" class="searchTerm" placeholder="Code postal" id="searchbox">
+                    <button onclick="search()" class="button">Rechercher</button>
                 </div>
             </div>
         </div>
 
-        <script>
+        <div class="menu">
+            <div class="row">
+                <div class="col-xl">
+                    <div class="card-aze">
+                        <h2> Régions </h2>
+                        <div class="vertical-menu" id="region-list">
+                            <span onclick="loadDeps(this.textContent)">AUVERGNE RHONE ALPES</span>
+                            <span onclick="loadDeps(this.textContent)">BRETAGNE</span>
+                            <span onclick="loadDeps(this.textContent)">BOURGOGNE FRANCHE COMTE</span>
+                            <span onclick="loadDeps(this.textContent)">CENTRE VAL DE LOIRE</span>
+                            <span onclick="loadDeps(this.textContent)">CORSE</span>
+                            <span onclick="loadDeps(this.textContent)">GRAND EST</span>
+                            <span onclick="loadDeps(this.textContent)">HAUTS DE FRANCE</span>
+                            <span onclick="loadDeps(this.textContent)">ILE DE FRANCE</span>
+                            <span onclick="loadDeps(this.textContent)">LA REUNION</span>
+                            <span onclick="loadDeps(this.textContent)">MARTINIQUE</span>
+                            <span onclick="loadDeps(this.textContent)">NORMANDIE</span>
+                            <span onclick="loadDeps(this.textContent)">NOUVELLE AQUITAINE</span>
+                            <span onclick="loadDeps(this.textContent)">OCCITANIE</span>
+                            <span onclick="loadDeps(this.textContent)">PAYS DE LA LOIRE</span>
+                            <span onclick="loadDeps(this.textContent)">PROVENCE ALPES COTE D AZUR</span>
+                        </div>
+                    </div>
+                </div>
 
-            window.onload = function () {
-                document.getElementById('searchbox').addEventListener("keyup", function (e) {
-                    if (e.key === 'Enter') {
-                        search();
-                    }
-                })
-            }
+                <div class="col-xl">
+                    <div class="card-aze">
+                        <h2>Départements</h2>
+                        <div class="vertical-menu" id="dept-list">
+                            <span>Choisissez une région</span>
+                        </div>
+                    </div>
+                </div>
 
-            function search() {
-                let rech = document.getElementById('searchbox').value;
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                        let j = JSON.parse(xmlHttp.responseText);
-
-                        let deps = j.region.departements;
-                        let s = '';
-                        for (let i = 0; i < deps.length; i++) {
-                            s += '<span ' + (j.departement.nom_dep === deps[i] ? 'class="active"' : '') + ' onclick="loadComs(this)">' + deps[i] + '</span>';
-                        }
-                        document.getElementById('dept-list').innerHTML = s;
-
-                        document.getElementById('dept-name').textContent = j.departement.nom_dep;
-                        document.getElementById('dept-score').textContent = j.departement.score_global;
-                        document.getElementById('dept-acces-info').textContent = j.departement.indice_acces_info;
-                        document.getElementById('dept-if-num').textContent = j.departement.indice_acces_interf_num;
-                        document.getElementById('dept-cap-if').textContent = j.departement.indice_competences_num;
-                        document.getElementById('dept-comp-admin').textContent = j.departement.indice_competences_admin;
-                        document.getElementById('dept-card').style.display = "";
-
-                        document.getElementById('reg-name').textContent = j.region.nom_reg;
-                        document.getElementById('region-score').textContent = j.region.score_global;
-                        document.getElementById('region-acces-info').textContent = j.region.indice_acces_info;
-                        document.getElementById('region-if-num').textContent = j.region.indice_acces_interf_num;
-                        document.getElementById('region-cap-if').textContent = j.region.indice_competences_num;
-                        document.getElementById('region-comp-admin').textContent = j.region.indice_competences_admin;
-                        document.getElementById('region-card').style.display = "";
-
-                        // Séléctionner la bonne région
-                        let regions = document.getElementById('region-list').getElementsByTagName('span');
-                        for (let i = 0; i < regions.length; i++) {
-                            if (regions[i].textContent === j.region.nom_reg) {
-                                regions[i].classList.add('active');
-                            } else {
-                                regions[i].classList.remove('active');
-                            }
-                        }
-
-                        // Séléctionner le bon dept
-                        let depts = document.getElementById('dept-list').getElementsByTagName('span');
-                        for (let i = 0; i < depts.length; i++) {
-                            if (depts[i].textContent === j.departement.nom_dep) {
-                                depts[i].classList.add('active')
-                            } else {
-                                depts[i].classList.remove('active');
-                            }
-                        }
-
-                        // Afficher liste des résultats
-                        let comList = document.getElementById('coms-list');
-                        s = ''
-                        Object.keys(j.communes).forEach(k => {
-                            s += '<span onclick="loadCom(' + k + ', this)">' + j.communes[k].nom_com + " (" + j.communes[k].nom_iris + ")" + '</span>';
-                        });
-                        comList.innerHTML = s;
-
-                        if (j.communes.length === 1) {
-                            let el = comList.getElementsByTagName('span')[0];
-                            let id = Object.keys(j.communes)[0];
-                            loadCom(id, el);
-                        } else {
-                            comList.scrollIntoView({behavior: 'smooth', block: 'center'});
-                        }
-                    }
-                }
-                xmlHttp.open('GET', '/search?code_postal=' + rech, true);
-                xmlHttp.send();
-            }
-
-            function loadDeps(nomReg) {
-
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                        let j = JSON.parse(xmlHttp.responseText);
-
-                        document.getElementById('reg-name').textContent = nomReg;
-                        document.getElementById('region-score').textContent = j.score_global;
-                        document.getElementById('region-acces-info').textContent = j.indice_acces_info;
-                        document.getElementById('region-if-num').textContent = j.indice_acces_interf_num;
-                        document.getElementById('region-cap-if').textContent = j.indice_competences_num;
-                        document.getElementById('region-comp-admin').textContent = j.indice_competences_admin;
-                        let card = document.getElementById('region-card');
-                        card.style.display = "";
-
-                        let deptList = document.getElementById('dept-list');
-                        let s = '';
-                        for (let i = 0; i < j.departements.length; i++) {
-                            s += '<span onclick="loadComs(this)">' + j.departements[i] + '</span>';
-                        }
-                        deptList.innerHTML = s;
-
-                        let regions = document.getElementById('region-list').getElementsByTagName('span');
-
-                        for (let i = 0; i < regions.length; i++) {
-                            if (regions[i].textContent === nomReg) {
-                                regions[i].classList.add('active');
-                            } else {
-                                regions[i].classList.remove('active');
-                            }
-                        }
-                        document.getElementById('coms-list').innerHTML = '<span>Choisissez un département</span>';
-
-                        document.getElementById('dept-card').style.display = "none";
-                        document.getElementById('com-card').style.display = "none";
-                    }
-                }
-                xmlHttp.open('GET', '/departements?region=' + nomReg, true);
-                xmlHttp.send();
-            }
-
-            function loadComs(el) {
-                let nomDept = el.textContent;
-                let nomReg = document.getElementById('region-list').getElementsByClassName('active')[0].textContent;
-
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                        let j = JSON.parse(xmlHttp.responseText);
-
-                        document.getElementById('dept-name').textContent = nomDept;
-                        document.getElementById('dept-score').textContent = j.score_global;
-                        document.getElementById('dept-acces-info').textContent = j.indice_acces_info;
-                        document.getElementById('dept-if-num').textContent = j.indice_acces_interf_num;
-                        document.getElementById('dept-cap-if').textContent = j.indice_competences_num;
-                        document.getElementById('dept-comp-admin').textContent = j.indice_competences_admin;
-                        let card = document.getElementById('dept-card');
-                        card.style.display = "";
-
-                        let comList = document.getElementById('coms-list');
-                        let s = ''
-                        Object.keys(j.communes).forEach(k => {
-                            s += '<span onclick="loadCom(' + k + ', this)">' + j.communes[k] + '</span>';
-                        });
-                        comList.innerHTML = s;
-
-                        let depts = document.getElementById('dept-list').getElementsByClassName('active');
-
-                        for (let i = 0; i < depts.length; i++) {
-                            depts[i].classList.remove('active');
-                        }
-
-                        el.classList.add("active");
-                        document.getElementById('com-card').style.display = "none";
-                    }
-                }
-                xmlHttp.open('GET', '/communes?region=' + nomReg + '&departement=' + nomDept, true);
-                xmlHttp.send();
-            }
-
-            function loadCom(idCom, el) {
-                let nomReg = document.getElementById('region-list').getElementsByClassName('active')[0].textContent;
-                let nomDept = document.getElementById('dept-list').getElementsByClassName('active')[0].textContent;
-                let nomComIris = el.textContent;
-
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                        let j = JSON.parse(xmlHttp.responseText);
-
-                        document.getElementById('com-name').textContent = nomComIris;
-                        document.getElementById('com-score').textContent = j.commune.score_global;
-                        document.getElementById('com-acces-info').textContent = j.commune.indice_acces_info;
-                        document.getElementById('com-if-num').textContent = j.commune.indice_acces_interf_num;
-                        document.getElementById('com-cap-if').textContent = j.commune.indice_competences_num;
-                        document.getElementById('com-comp-admin').textContent = j.commune.indice_competences_admin;
-                        let card = document.getElementById('com-card');
-                        card.style.display = "";
-                        card.scrollIntoView({behavior: 'smooth', block: 'center'});
-
-                        let coms = document.getElementById('coms-list').getElementsByClassName('active');
-
-                        for (let i = 0; i < coms.length; i++) {
-                            coms[i].classList.remove('active');
-                        }
-
-                        el.classList.add("active");
-                    }
-                }
-                xmlHttp.open('GET', '/commune?region=' + nomReg + '&departement=' + nomDept + '&commune=' + idCom, true);
-                xmlHttp.send();
-            }
-        </script>
-            <div class="menu">
-                <button class="button" id="search-history">Mes recherches</button>
-                <div class="card-history" id="history-card">
-                    <h2> History </h2>
-                    <div class="vertical-menu" id="history-list">
-                        <span>AUVERGNE RHONE ALPES</span>
-                        <span>BRETAGNE</span>
-                        <span>BOURGOGNE FRANCHE COMTE</span>
-                        <span>CENTRE VAL DE LOIRE</span>
-                        <span>CORSE</span>
-                        <span>GRAND EST</span>
-                        <span>HAUTS DE FRANCE</span>
-                        <span>ILE DE FRANCE</span>
-                        <span>LA REUNION</span>
-                        <span>MARTINIQUE</span>
-                        <span>NORMANDIE</span>
-                        <span>NOUVELLE AQUITAINE</span>
-                        <span>OCCITANIE</span>
-                        <span>PAYS DE LA LOIRE</span>
-                        <span>PROVENCE ALPES COTE D AZUR</span>
+                <div class="col-xl">
+                    <div class="card-aze" id="coms-list-card">
+                        <h2>Communes</h2>
+                        <div class="vertical-menu" id="coms-list">
+                            <span>Choisissez une région</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <div class="card">
+                <div class="row" style="display: none" id="com-card">
+                    <div class="col-xl">
+                        <div class="card-aze">
+                            <h2><span id="com-name"></span> : <span id="com-score">42</span></h2>
+                            <div class="card-body">
+                                <p id="header-line"> Votre score est parmi les plus faible du pays. Pas de chance les bouffons</p>
+                                <h3>Accès à l'information : <span id="com-acces-info"></span></h3>
+                                <p>Cet indice identifie les territoires mal couverts par les services d'information ou des populations qui auraient des difficultés à comprendre l'information.</p>
+
+                                <h3>Accès aux interfaces numériques : <span id="com-if-num"></span></h3>
+                                <p>Correspond aux territoires mal couverts par les services numériques ou des populations qui auraient des difficultés financières à y acceder .</p>
+
+                                <h3>Capacité d'usage des interfaces numériques : <span id="com-cap-if"></span></h3>
+                                <p>Identifier des populations parmi lesquelles s'observent des difficultés à utiliser internet ou les outils numériques.</p>
+
+                                <h3>Compétences administratifs : <span id="com-comp-admin"></span></h3>
+                                <p>Identifier des populations parmi lesquelles s'observent des difficultés à accomplir des procédures administratives.</p>
+                                <button class="button pdf" onclick="pdf()">Enregistrer en PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl" style="display: none" id="region-card">
+                        <div class="card-aze">
+                            <h2><span id="reg-name"></span> : <span id="region-score">42</span></h2>
+                            <div class="card-body">
+                                <h3>Accès à l'information : <span id="region-acces-info"></span></h3>
+                                <h3>Accès aux interfaces numériques : <span id="region-if-num"></span></h3>
+                                <h3>Capacité d'usage des interfaces numériques : <span id="region-cap-if"></span></h3>
+                                <h3>Compétences administratifs : <span id="region-comp-admin"></span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl" style="display: none" id="dept-card">
+                        <div class="card-aze">
+                            <h2><span id="dept-name"></span> : <span id="dept-score">42</span></h2>
+                            <div class="card-body">
+                                <h3>Accès à l'information : <span id="dept-acces-info"></span></h3>
+                                <h3>Accès aux interfaces numériques : <span id="dept-if-num"></span></h3>
+                                <h3>Capacité d'usage des interfaces numériques : <span id="dept-cap-if"></span></h3>
+                                <h3>Compétences administratifs : <span id="dept-comp-admin"></span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <button class="button" id="search-history" onclick="toggleHistory()">Mes recherches</button>
+        <div class="card-history" id="history-card" style="display: none;">
+            <h2> Historique </h2>
+            <div class="vertical-menu" id="history-list">
+                <span>Historique vide</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        window.onload = function () {
+            document.getElementById('searchbox').addEventListener("keyup", function (e) {
+                if (e.key === 'Enter') {
+                    search();
+                }
+            })
+        }
+
+        function search() {
+            let rech = document.getElementById('searchbox').value;
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    let j = JSON.parse(xmlHttp.responseText);
+
+                    let deps = j.region.departements;
+                    let s = '';
+                    for (let i = 0; i < deps.length; i++) {
+                        s += '<span ' + (j.departement.nom_dep === deps[i] ? 'class="active"' : '') + ' onclick="loadComs(this)">' + deps[i] + '</span>';
+                    }
+                    document.getElementById('dept-list').innerHTML = s;
+
+                    document.getElementById('dept-name').textContent = j.departement.nom_dep;
+                    document.getElementById('dept-score').textContent = j.departement.score_global;
+                    document.getElementById('dept-acces-info').textContent = j.departement.indice_acces_info;
+                    document.getElementById('dept-if-num').textContent = j.departement.indice_acces_interf_num;
+                    document.getElementById('dept-cap-if').textContent = j.departement.indice_competences_num;
+                    document.getElementById('dept-comp-admin').textContent = j.departement.indice_competences_admin;
+                    document.getElementById('dept-card').style.display = "";
+
+                    document.getElementById('reg-name').textContent = j.region.nom_reg;
+                    document.getElementById('region-score').textContent = j.region.score_global;
+                    document.getElementById('region-acces-info').textContent = j.region.indice_acces_info;
+                    document.getElementById('region-if-num').textContent = j.region.indice_acces_interf_num;
+                    document.getElementById('region-cap-if').textContent = j.region.indice_competences_num;
+                    document.getElementById('region-comp-admin').textContent = j.region.indice_competences_admin;
+                    document.getElementById('region-card').style.display = "";
+
+                    // Séléctionner la bonne région
+                    let regions = document.getElementById('region-list').getElementsByTagName('span');
+                    for (let i = 0; i < regions.length; i++) {
+                        if (regions[i].textContent === j.region.nom_reg) {
+                            regions[i].classList.add('active');
+                        } else {
+                            regions[i].classList.remove('active');
+                        }
+                    }
+
+                    // Séléctionner le bon dept
+                    let depts = document.getElementById('dept-list').getElementsByTagName('span');
+                    for (let i = 0; i < depts.length; i++) {
+                        if (depts[i].textContent === j.departement.nom_dep) {
+                            depts[i].classList.add('active')
+                        } else {
+                            depts[i].classList.remove('active');
+                        }
+                    }
+
+                    // Afficher liste des résultats
+                    let comList = document.getElementById('coms-list');
+                    s = ''
+                    Object.keys(j.communes).forEach(k => {
+                        s += '<span id="' + k + '" onclick="loadCom(' + k + ', this)">' + j.communes[k].nom_com + " (" + j.communes[k].nom_iris + ")" + '</span>';
+                    });
+                    comList.innerHTML = s;
+
+                    if (j.communes.length === 1) {
+                        let el = comList.getElementsByTagName('span')[0];
+                        let id = Object.keys(j.communes)[0];
+                        loadCom(id, el);
+                    } else {
+                        comList.scrollIntoView({behavior: 'smooth', block: 'center'});
+                    }
+                }
+            }
+            xmlHttp.open('GET', '/search?code_postal=' + rech, true);
+            xmlHttp.send();
+        }
+
+        function loadDeps(nomReg) {
+
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    let j = JSON.parse(xmlHttp.responseText);
+
+                    document.getElementById('reg-name').textContent = nomReg;
+                    document.getElementById('region-score').textContent = j.score_global;
+                    document.getElementById('region-acces-info').textContent = j.indice_acces_info;
+                    document.getElementById('region-if-num').textContent = j.indice_acces_interf_num;
+                    document.getElementById('region-cap-if').textContent = j.indice_competences_num;
+                    document.getElementById('region-comp-admin').textContent = j.indice_competences_admin;
+                    let card = document.getElementById('region-card');
+                    card.style.display = "";
+
+                    let deptList = document.getElementById('dept-list');
+                    let s = '';
+                    for (let i = 0; i < j.departements.length; i++) {
+                        s += '<span onclick="loadComs(this)">' + j.departements[i] + '</span>';
+                    }
+                    deptList.innerHTML = s;
+
+                    let regions = document.getElementById('region-list').getElementsByTagName('span');
+
+                    for (let i = 0; i < regions.length; i++) {
+                        if (regions[i].textContent === nomReg) {
+                            regions[i].classList.add('active');
+                        } else {
+                            regions[i].classList.remove('active');
+                        }
+                    }
+                    document.getElementById('coms-list').innerHTML = '<span>Choisissez un département</span>';
+
+                    document.getElementById('dept-card').style.display = "none";
+                    document.getElementById('com-card').style.display = "none";
+                }
+            }
+            xmlHttp.open('GET', '/departements?region=' + nomReg, true);
+            xmlHttp.send();
+        }
+
+        function loadComs(el) {
+            let nomDept = el.textContent;
+            let nomReg = document.getElementById('region-list').getElementsByClassName('active')[0].textContent;
+
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    let j = JSON.parse(xmlHttp.responseText);
+
+                    document.getElementById('dept-name').textContent = nomDept;
+                    document.getElementById('dept-score').textContent = j.score_global;
+                    document.getElementById('dept-acces-info').textContent = j.indice_acces_info;
+                    document.getElementById('dept-if-num').textContent = j.indice_acces_interf_num;
+                    document.getElementById('dept-cap-if').textContent = j.indice_competences_num;
+                    document.getElementById('dept-comp-admin').textContent = j.indice_competences_admin;
+                    let card = document.getElementById('dept-card');
+                    card.style.display = "";
+
+                    let comList = document.getElementById('coms-list');
+                    let s = ''
+                    Object.keys(j.communes).forEach(k => {
+                        s += '<span id="' + k + '" onclick="loadCom(' + k + ', this)">' + j.communes[k] + '</span>';
+                    });
+                    comList.innerHTML = s;
+
+                    let depts = document.getElementById('dept-list').getElementsByClassName('active');
+
+                    for (let i = 0; i < depts.length; i++) {
+                        depts[i].classList.remove('active');
+                    }
+
+                    el.classList.add("active");
+                    document.getElementById('com-card').style.display = "none";
+                }
+            }
+            xmlHttp.open('GET', '/communes?region=' + nomReg + '&departement=' + nomDept, true);
+            xmlHttp.send();
+        }
+
+        function pdf() {
+            let nomReg = document.getElementById('region-list').getElementsByClassName('active')[0].textContent;
+            let nomDept = document.getElementById('dept-list').getElementsByClassName('active')[0].textContent;
+            let idCom = document.getElementById('coms-list').getElementsByClassName('active')[0].id;
+
+            window.open('/pdf?region=' + nomReg + '&departement=' + nomDept + '&commune=' + idCom);
+        }
+
+        function loadCom(idCom, el) {
+            let nomReg = document.getElementById('region-list').getElementsByClassName('active')[0].textContent;
+            let nomDept = document.getElementById('dept-list').getElementsByClassName('active')[0].textContent;
+            let nomComIris = el.textContent;
+
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    let j = JSON.parse(xmlHttp.responseText);
+
+                    document.getElementById('com-name').textContent = nomComIris;
+                    document.getElementById('com-score').textContent = j.commune.score_global;
+                    document.getElementById('com-acces-info').textContent = j.commune.indice_acces_info;
+                    document.getElementById('com-if-num').textContent = j.commune.indice_acces_interf_num;
+                    document.getElementById('com-cap-if').textContent = j.commune.indice_competences_num;
+                    document.getElementById('com-comp-admin').textContent = j.commune.indice_competences_admin;
+                    let card = document.getElementById('com-card');
+                    card.style.display = "";
+                    card.scrollIntoView({behavior: 'smooth', block: 'center'});
+
+                    let coms = document.getElementById('coms-list').getElementsByClassName('active');
+
+                    for (let i = 0; i < coms.length; i++) {
+                        coms[i].classList.remove('active');
+                    }
+
+                    el.classList.add("active");
+                }
+            }
+            xmlHttp.open('GET', '/commune?region=' + nomReg + '&departement=' + nomDept + '&commune=' + idCom, true);
+            xmlHttp.send();
+        }
+
+        function toggleHistory() {
+            let hist = document.getElementById('history-list');
+            if (hist.style.display === 'none') {
+                hist.style.display = '';
+            } else {
+                hist.style.display = 'none';
+            }
+        }
+    </script>
     </body>
 </html>

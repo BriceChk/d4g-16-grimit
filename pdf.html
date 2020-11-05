@@ -1,58 +1,60 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <mate charest="utf-8" />
-        <title>Indice de fragilité numérique</title>
-    </head>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Indice de fragilité numérique</title>
+
     <style>
         body{
             font-family: 'Open Sans', sans-serif;
         }
-        h1 {
-          color: #4CAF50;
+        h3 {
+            color: #4CAF50;
         }
         p {
-          color: #4CAF50;
-          font-style: italic;
+            color: #4CAF50;
+            font-style: italic;
+            font-size: smaller;
         }
         li {
-            font-weight: bold;
+            font-size: smaller;
         }
-        </style>
-    <body>
-        <h1>Indice de fragilité numérique - "{{this.nom_C}}"</h1>
-        <ul>
-            {{#each donnees}}
-            <h2>Résultats à l'échelle de la commune</h2>
-            <li>Score global : {{this.sg_C}}</li><br>
-            <li>Accès à l'information : {{this.iainf_C}}</li>
-            <p>Cet indice identifie les territoires mal couverts par les services d'information ou des populations qui auraient des difficultés à comprendre l'information.</p>
-            <li>Accès aux interfaces numériques : {{this.iainum_C}}</li>
-            <p>Correspond aux territoires mal couverts par les services numériques ou des populations qui auraient des difficultés financières à y accéder.</p>
-            <li>Capacité d'usage des interfaces numériques : {{this.icnum_C}}</li>
-            <p>Identifier des populations parmi lesquelles s'observent des difficultés à utiliser internet ou les outils numériques.</p>
-            <li>Compétences administratives : {{this.icadm_C}}</li>
-            <p>Identifier des populations parmi lesquelles s'observent des difficultés à accomplir des procédures administratives.</p>
-            <br>
-            {{/each}}
-        </ul>
-        <ul>
-            <h2>Pour le département : {{this.nom_dep}}</h2>
-            <li>Score global : {{this.sg_D}}</li>
-            <li>Accès à l'information : {{this.iainf_D}}</li>
-            <li>Accès aux interfaces numériques : {{this.iainum_D}}</li>
-            <li>Capacité d'usage des interfaces numériques : {{this.icnum_D}}</li>
-            <li>Compétences administratives : {{this.icadm_D}}</li>
-            <br>
-        </ul>
-        <ul>
-            <h2>Pour la région : {{this.nom_reg}}</h2>
-            <li>Score global : {{this.sg_R}}</li>
-            <li>Accès à l'information : {{this.iainf_R}}</li>
-            <li>Accès aux interfaces numériques : {{this.iainum_R}}</li>
-            <li>Capacité d'usage des interfaces numériques : {{this.icnum_R}}</li>
-            <li>Compétences administratives : {{this.icadm_R}}</li>
-            <br>
-        </ul>
-    </body>
+    </style>
+</head>
+<body>
+<h3>Indice de fragilité numérique - {{d.nom_C}}</h3>
+<h4>Résultats à l'échelle de la commune</h4>
+
+<ul>
+    <li>Score global : {{d.sg_C}}</li>
+    <li>Accès à l'information : {{d.iainf_C}}</li>
+    <p>Cet indice identifie les territoires mal couverts par les services d'information ou des populations qui auraient des difficultés à comprendre l'information.</p>
+    <li>Accès aux interfaces numériques : {{d.iainum_C}}</li>
+    <p>Correspond aux territoires mal couverts par les services numériques ou des populations qui auraient des difficultés financières à y accéder.</p>
+    <li>Capacité d'usage des interfaces numériques : {{d.icnum_C}}</li>
+    <p>Identifier des populations parmi lesquelles s'observent des difficultés à utiliser internet ou les outils numériques.</p>
+    <li>Compétences administratives : {{d.icadm_C}}</li>
+    <p>Identifier des populations parmi lesquelles s'observent des difficultés à accomplir des procédures administratives.</p>
+</ul>
+
+<h4>Pour le département : {{d.nom_D}}</h4>
+<ul>
+
+    <li>Score global : {{d.sg_D}}</li>
+    <li>Accès à l'information : {{d.iainf_D}}</li>
+    <li>Accès aux interfaces numériques : {{d.iainum_D}}</li>
+    <li>Capacité d'usage des interfaces numériques : {{d.icnum_D}}</li>
+    <li>Compétences administratives : {{d.icadm_D}}</li>
+</ul>
+
+<h4>Pour la région : {{d.nom_R}}</h4>
+<ul>
+
+    <li>Score global : {{d.sg_R}}</li>
+    <li>Accès à l'information : {{d.iainf_R}}</li>
+    <li>Accès aux interfaces numériques : {{d.iainum_R}}</li>
+    <li>Capacité d'usage des interfaces numériques : {{d.icnum_R}}</li>
+    <li>Compétences administratives : {{d.icadm_R}}</li>
+</ul>
+</body>
 </html>

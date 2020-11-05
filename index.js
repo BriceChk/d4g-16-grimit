@@ -1,6 +1,7 @@
 const http = require('https');
 const fs = require("fs");
 const path = require('path');
+let pdf = require("pdf-creator-node");
 
 const host = '146.59.196.41';
 const port = 443;
@@ -10,10 +11,6 @@ const options = {
     cert: fs.readFileSync('/etc/letsencrypt/live/d4g-16.bricechk.fr/fullchain.pem'),
     ca: fs.readFileSync('/etc/letsencrypt/live/d4g-16.bricechk.fr/chain.pem')
 }
-
-//Required package
-var pdf = require("pdf-creator-node");
-var fs = require('fs');
 
 //TODO mettre à jour nb_clicks
 
@@ -166,7 +163,6 @@ const server = http.createServer(options, (req, res) => {
     } else if (req_path === "pdf") {
         if ('region' in searchObj && 'departement' in searchObj && 'commune' in searchObj) {
             let bdd = getBdd();
-            let r = {};
             let rechReg = searchObj['region'].replaceAll('+', ' ');
             if (rechReg in bdd) {
                 let region = bdd[rechReg];
@@ -180,77 +176,63 @@ const server = http.createServer(options, (req, res) => {
                         // là t'as region, dep et com pour accéder à leur propriétés
 
                         // Read HTML Template
-                        var html = fs.readFileSync('index.html', 'utf8');
+                        let html = fs.readFileSync('pdf.html', 'utf8');
 
-                        var options = {
+                        let options = {
                             format: "A4",
                             orientation: "portrait",
-                            border: "10mm",
-                            header: {
-                                height: "45mm",
-                                contents: '<div style="text-align: center;">Digital Fragility Index</div>'
-                            },
-                            "footer": {
-                                "height": "28mm",
-                                "contents": {
-                                    first: 'First page - Team 16',
-                                    default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
-                                    last: 'Last Page - Team 16'
-                                }
-                            }
+                            border: "10mm"
                         };
 
-                        var donnees_C = [
-                            {
-                                nom_C:rechCom,
-                                sg_C:com.score_global,
-                                iainf_C:com.indice_acces_info,
-                                iainum_C:com.indice_acces_interf_num,
-                                icadm_C:com.indice_competences_admin,
-                                icnum_C:com.indice_competences_num
-                            }
-                        ]
+                        let donnees = {
+                                nom_C: com.nom_com + ' (' + com.nom_iris + ')',
+                                sg_C: com.score_global,
+                                iainf_C: com.indice_acces_info,
+                                iainum_C: com.indice_acces_interf_num,
+                                icadm_C: com.indice_competences_admin,
+                                icnum_C: com.indice_competences_num,
+                                nom_D: rechDep,
+                                sg_D: dep.score_global,
+                                iainf_D: dep.indice_acces_info,
+                                iainum_D: dep.indice_acces_interf_num,
+                                icadm_D: dep.indice_competences_admin,
+                                icnum_D: dep.indice_competences_num,
+                                nom_R: rechReg,
+                                sg_R: region.score_global,
+                                iainf_R: region.indice_acces_info,
+                                iainum_R: region.indice_acces_interf_num,
+                                icadm_R: region.indice_competences_admin,
+                                icnum_R: region.indice_competences_num
+                            };
 
-                        var donnees_D = [
-                            {
-                                sg_D:dept.score_global,
-                                iainf_D:dept.indice_acces_info,
-                                iainum_D:dept.indice_acces_interf_num,
-                                icadm_D:dept.indice_competences_admin,
-                                icnum_D:dept.indice_competences_num
-                            }
-                        ]
-
-                        var donnees_R = [
-                            {
-                                sg_R:region.score_global,
-                                iainf_R:region.indice_acces_info,
-                                iainum_R:region.indice_acces_interf_num,
-                                icadm_R:region.indice_competences_admin,
-                                icnum_R:region.indice_competences_num
-                            }
-                        ]
-
-                        var document = {
+                        let document = {
                             html: html,
                             data: {
-                                donnees_C: donnees_C,
-                                donnees_D: donnees_D,
-                                donnees_R: donnees_R,
+                                d: donnees,
                             },
                             path: "./DigitalFragilityIndex.pdf"
                         };
 
                         pdf.create(document, options)
-                            .then(res => {
-                                console.log(res) //CA CA PUE LA MERDE MAIS COMMENT FAIRE????
+                            .then(r => {
+
+                                fs.readFile('./DigitalFragilityIndex.pdf', function(error, content) {
+                                    if (error) {
+
+                                    } else {
+                                        res.writeHead(200, { 'Content-Type': 'application/pdf' });
+                                        res.end(content, 'utf-8');
+                                        fs.unlinkSync('./DigitalFragilityIndex.pdf');
+                                    }
+                                });
                             })
                             .catch(error => {
-                                console.error(error)
+                                console.error(error);
+                                res.end("Erreur pdf");
                             });
 
 
-                        res.end("Le pdf");
+
                     } else {
                         res.end("Commune pas trouvé");
                     }
