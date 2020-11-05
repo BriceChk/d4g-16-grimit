@@ -48,19 +48,18 @@ body{
     overflow-y: auto;
 }
 
-.vertical-menu a {
+.vertical-menu span {
     background-color: #eee;
     color: black;
     display: block;
     padding: 12px;
     text-decoration: none;
 }
-
-.vertical-menu a:hover {
+.vertical-menu span:hover {
     background-color: #ccc;
 }
 
-.vertical-menu a.active {
+.vertical-menu span.active {
     background-color: #4CAF50;
     color: white;
 }
