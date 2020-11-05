@@ -17,10 +17,11 @@
             </div>
 
             <div class="search">
-                <form action="#">
-                    <input type="text" class="search-data" placeholder="Postal code" required>
-                    <button type="submit"> Search </button>
-                </form>
+
+                <input type="text" class="searchTerm" placeholder="Code postal" id="searchbox">
+                <button onclick="search()" class="button">
+                    Rechercher
+                </button>
             </div>
 
             <div class="menu">
@@ -28,21 +29,21 @@
                     <div class="col-xl">
                         <h2> Régions </h2>
                         <div class="vertical-menu" id="region-list">
-                            <span onclick="loadDeps(this)">AUVERGNE RHONE ALPES</span>
-                            <span onclick="loadDeps(this)">BRETAGNE</span>
-                            <span onclick="loadDeps(this)">BOURGOGNE FRANCHE COMTE</span>
-                            <span onclick="loadDeps(this)">CENTRE VAL DE LOIRE</span>
-                            <span onclick="loadDeps(this)">CORSE</span>
-                            <span onclick="loadDeps(this)">GRAND EST</span>
-                            <span onclick="loadDeps(this)">HAUTS DE FRANCE</span>
-                            <span onclick="loadDeps(this)">ILE DE FRANCE</span>
-                            <span onclick="loadDeps(this)">LA REUNION</span>
-                            <span onclick="loadDeps(this)">MARTINIQUE</span>
-                            <span onclick="loadDeps(this)">NORMANDIE</span>
-                            <span onclick="loadDeps(this)">NOUVELLE AQUITAINE</span>
-                            <span onclick="loadDeps(this)">OCCITANIE</span>
-                            <span onclick="loadDeps(this)">PAYS DE LA LOIRE</span>
-                            <span onclick="loadDeps(this)">PROVENCE ALPES COTE D AZUR</span>
+                            <span onclick="loadDeps(this.textContent)">AUVERGNE RHONE ALPES</span>
+                            <span onclick="loadDeps(this.textContent)">BRETAGNE</span>
+                            <span onclick="loadDeps(this.textContent)">BOURGOGNE FRANCHE COMTE</span>
+                            <span onclick="loadDeps(this.textContent)">CENTRE VAL DE LOIRE</span>
+                            <span onclick="loadDeps(this.textContent)">CORSE</span>
+                            <span onclick="loadDeps(this.textContent)">GRAND EST</span>
+                            <span onclick="loadDeps(this.textContent)">HAUTS DE FRANCE</span>
+                            <span onclick="loadDeps(this.textContent)">ILE DE FRANCE</span>
+                            <span onclick="loadDeps(this.textContent)">LA REUNION</span>
+                            <span onclick="loadDeps(this.textContent)">MARTINIQUE</span>
+                            <span onclick="loadDeps(this.textContent)">NORMANDIE</span>
+                            <span onclick="loadDeps(this.textContent)">NOUVELLE AQUITAINE</span>
+                            <span onclick="loadDeps(this.textContent)">OCCITANIE</span>
+                            <span onclick="loadDeps(this.textContent)">PAYS DE LA LOIRE</span>
+                            <span onclick="loadDeps(this.textContent)">PROVENCE ALPES COTE D AZUR</span>
                         </div>
                     </div>
 
@@ -109,8 +110,39 @@
         </div>
 
         <script>
-            function loadDeps(el) {
-                let nomReg = el.textContent;
+            function search() {
+                let rech = document.getElementById('searchbox').value;
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                        let j = JSON.parse(xmlHttp.responseText);
+
+                        loadDeps(j.region.nom_reg);
+
+                        document.getElementById('dept-name').textContent = j.departement.nom_dep;
+                        document.getElementById('dept-score').textContent = j.departement.score_global;
+                        document.getElementById('dept-acces-info').textContent = j.departement.indice_acces_info;
+                        document.getElementById('dept-if-num').textContent = j.departement.indice_acces_interf_num;
+                        document.getElementById('dept-cap-if').textContent = j.departement.indice_competences_num;
+                        document.getElementById('dept-comp-admin').textContent = j.departement.indice_competences_admin;
+                        let card = document.getElementById('dept-card');
+                        card.style.display = "";
+
+                        let depts = document.getElementById('dept-list').getElementsByTagName('span');
+                        for (let i = 0; i < depts.length; i++) {
+                            if (depts[i].textContent === j.departement.nom_dep) {
+                                depts[i].classList.add('active')
+                            } else {
+                                depts[i].classList.remove('active');
+                            }
+                        }
+                    }
+                }
+                xmlHttp.open('GET', '/search?code_postal=' + rech, true);
+                xmlHttp.send();
+            }
+
+            function loadDeps(nomReg) {
 
                 let xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function () {
@@ -127,20 +159,24 @@
                         card.style.display = "";
 
                         let deptList = document.getElementById('dept-list');
-                        deptList.innerHTML = '';
+                        let s = '';
                         for (let i = 0; i < j.departements.length; i++) {
-                            deptList.innerHTML += '<span onclick="loadComs(this)">' + j.departements[i] + '</span>';
+                            s += '<span onclick="loadComs(this)">' + j.departements[i] + '</span>';
                         }
+                        deptList.innerHTML = s;
 
-                        let regions = document.getElementById('region-list').getElementsByClassName('active');
+                        let regions = document.getElementById('region-list').getElementsByTagName('span');
 
                         for (let i = 0; i < regions.length; i++) {
-                            regions[i].classList.remove('active');
+                            if (regions[i].textContent === nomReg) {
+                                regions[i].classList.add('active');
+                            } else {
+                                regions[i].classList.remove('active');
+                            }
                         }
 
-                        el.classList.add("active");
-
                         document.getElementById('dept-card').style.display = "none";
+                        document.getElementById('com-card').style.display = "none";
                     }
                 }
                 xmlHttp.open('GET', '/departements?region=' + nomReg, true);
@@ -166,10 +202,11 @@
                         card.style.display = "";
 
                         let comList = document.getElementById('coms-list');
-                        comList.innerHTML = '';
+                        let s = ''
                         Object.keys(j.communes).forEach(k => {
-                            comList.innerHTML += '<span id="' + k + '" onclick="loadComs(this)">' + j.communes[k] + '</span>';
+                            s += '<span onclick="loadCom(' + k + ', this)">' + j.communes[k] + '</span>';
                         });
+                        comList.innerHTML = s;
 
                         let depts = document.getElementById('dept-list').getElementsByClassName('active');
 
@@ -178,9 +215,42 @@
                         }
 
                         el.classList.add("active");
+                        document.getElementById('com-card').style.display = "none";
                     }
                 }
                 xmlHttp.open('GET', '/communes?region=' + nomReg + '&departement=' + nomDept, true);
+                xmlHttp.send();
+            }
+
+            function loadCom(idCom, el) {
+                let nomReg = document.getElementById('region-list').getElementsByClassName('active')[0].textContent;
+                let nomDept = document.getElementById('dept-list').getElementsByClassName('active')[0].textContent;
+                let nomComIris = el.textContent;
+
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                        let j = JSON.parse(xmlHttp.responseText);
+
+                        document.getElementById('com-name').textContent = nomComIris;
+                        document.getElementById('com-score').textContent = j.commune.score_global;
+                        document.getElementById('com-acces-info').textContent = j.commune.indice_acces_info;
+                        document.getElementById('com-if-num').textContent = j.commune.indice_acces_interf_num;
+                        document.getElementById('com-cap-if').textContent = j.commune.indice_competences_num;
+                        document.getElementById('com-comp-admin').textContent = j.commune.indice_competences_admin;
+                        let card = document.getElementById('com-card');
+                        card.style.display = "";
+
+                        let coms = document.getElementById('coms-list').getElementsByClassName('active');
+
+                        for (let i = 0; i < coms.length; i++) {
+                            coms[i].classList.remove('active');
+                        }
+
+                        el.classList.add("active");
+                    }
+                }
+                xmlHttp.open('GET', '/commune?region=' + nomReg + '&departement=' + nomDept + '&commune=' + idCom, true);
                 xmlHttp.send();
             }
         </script>
