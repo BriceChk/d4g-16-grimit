@@ -12,34 +12,26 @@ body{
     color : #4CAF50;
 }
 
-.search form{
-    display: flex;
-    height: 40px;
-    padding: 2px;
-    background: #eee;
-    min-width: 18%!important;
-    border-radius: 2px;
-    border: 1px solid rgba(155,155,155,0.2);
-}
-.search form .search-data{
+.search {
     width: 100%;
-    height: 100%;
-    padding: 0 10px;
-    color: #fff;
-    font-size: 17px;
-    border: none;
-    font-weight: 500;
-    background: none;
+    position: relative;
+    display: flex;
 }
-.search form button{
-    padding: 0 15px;
-    color: #fff;
-    font-size: 17px;
-    background: #4CAF50;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #4CAF50;
+    border-right: none;
+    padding: 5px;
+    height: 30px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+    font-size: 16px;
+    box-sizing: content-box;
 }
+
+
 
 .vertical-menu {
     height: 240px;
@@ -66,7 +58,6 @@ body{
 }
 
 .menu h2, .card h2 {
-    border-radius : 20px 0 0 0;
     background-color: #4CAF50;
     color: white;
     display: block;
@@ -105,14 +96,18 @@ body{
 .button {
     background-color: #4CAF50;
     color: white;
-    padding: 13px 32px;
+    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    margin: 4px 2px;
     border: 3px solid #4CAF50;
 }
 
+#search {
+    position: relative;
+}
 
 #search-history{
     position: fixed;
