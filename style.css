@@ -10,7 +10,6 @@ body{
 
 .title h1 {
     text-align : center;
-    color : #F3F4F6;
 }
 
 .search {
@@ -109,17 +108,18 @@ body{
 }
 
 .card #header-line {
-    margin-left: 0px;
+    margin-left: 0;
 }
 
-.button {
+button {
     background-color: #305E5F;
+    color: white;
     padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border: 3px solid #305E5F;
+    border: 0;
     border-radius : 3px;
 }
 
@@ -135,5 +135,5 @@ body{
 }
 
 button:hover {
-    background-color: #305E5F;
+    background-color: #3e7879;
 }
