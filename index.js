@@ -196,11 +196,12 @@ const server = http.createServer((req, res) => {
 
                         var donnees_C = [
                             {
-                                sg_C: ,
-                                iainf_C: ,
-                                iainum_C: ,
-                                icadm_C: ,
-                                icnum_C:
+                                nom_C:rechCom,
+                                sg_C:com.score_global,
+                                iainf_C:com.indice_acces_info,
+                                iainum_C:com.indice_acces_interf_num,
+                                icadm_C:com.indice_competences_admin,
+                                icnum_C:com.indice_competences_num
                             }
                         ]
 
