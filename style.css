@@ -12,26 +12,34 @@ body{
     color : #4CAF50;
 }
 
-.search {
-    width: 100%;
-    position: relative;
+.search form{
     display: flex;
+    height: 40px;
+    padding: 2px;
+    background: #eee;
+    min-width: 18%!important;
+    border-radius: 2px;
+    border: 1px solid rgba(155,155,155,0.2);
 }
-
-.searchTerm {
+.search form .search-data{
     width: 100%;
-    border: 3px solid #4CAF50;
-    border-right: none;
-    padding: 5px;
-    height: 30px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: #9DBFAF;
-    font-size: 16px;
-    box-sizing: content-box;
+    height: 100%;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 17px;
+    border: none;
+    font-weight: 500;
+    background: none;
 }
-
-
+.search form button{
+    padding: 0 15px;
+    color: #fff;
+    font-size: 17px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
 
 .vertical-menu {
     height: 240px;
@@ -58,6 +66,7 @@ body{
 }
 
 .menu h2, .card h2 {
+    border-radius : 20px 0 0 0;
     background-color: #4CAF50;
     color: white;
     display: block;
@@ -96,7 +105,7 @@ body{
 .button {
     background-color: #4CAF50;
     color: white;
-    padding: 15px 32px;
+    padding: 13px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -104,9 +113,6 @@ body{
     border: 3px solid #4CAF50;
 }
 
-#search {
-    position: relative;
-}
 
 #search-history{
     position: fixed;
