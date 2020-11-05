@@ -11,17 +11,10 @@
     </head>
 
     <body>
-    <div class="div_pop_up">
-        Nous utilisons des cookies pour offrir une meilleure expérience. Nous ne collectons ni utilisons aucune de vos données.
-        <p>
-            <button class="button">Accepter</button>
-            <button class="button">Refuser</button>
-        </p>
-    </div>
-
-    <div class="container">
-        <div class="title">
+    <div class="title">
+        <div class="container">
             <h1>INDICE DE FRAGILITÉ NUMÉRIQUE</h1>
+            <hr>
             <p>
                 Cet indice permet d’obtenir une projection des zones en risque de fragilité numérique, d’identifier et catégoriser les zones de fragilité numérique selon différents critères. Il constitue ainsi un outil d’aide à la décision et de mobilisation des acteurs de l’inclusion numérique sur leur territoire.
             </p>
@@ -29,7 +22,8 @@
                 L'indice est calculé à l'aide de quatre variables : l'accès à l'information, l'accès aux interfaces numériques, la capacité d'usage des interfaces numériques et les compétences administratives, en prenant la région comme point de référence.
             </p>
         </div>
-
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col-xl">
                 <div class="search">
@@ -137,13 +131,19 @@
         </div>
     </div>
 
+    <div class="div_pop_up">
+        Nous utilisons des cookies pour offrir une meilleure expérience. Nous ne collectons ni utilisons aucune de vos données.
+        <p>
+            <button class="button">Accepter</button>
+            <button class="button">Refuser</button>
+        </p>
+    </div>
+
     <div class="menu">
         <button class="button" id="search-history" onclick="toggleHistory()">Mes recherches</button>
         <div class="card-history" id="history-card" style="display: none;">
             <h2> Historique </h2>
-            <div class="vertical-menu" id="history-list">
-                <span>Historique vide</span>
-            </div>
+            <div class="vertical-menu" id="history-list"><span>Historique vide</span></div>
         </div>
     </div>
 
@@ -155,6 +155,9 @@
                     search();
                 }
             })
+
+            //TODO
+            //TODO charger historique depuis cookies
         }
 
         function search() {
@@ -353,6 +356,7 @@
                     } else {
                         hist.innerHTML += s;
                     }
+                    //TODO ajout aux cookies
 
                     el.classList.add("active");
                 }
@@ -367,15 +371,14 @@
                 if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
                     let j = JSON.parse(xmlHttp.responseText);
 
-                    document.getElementById('com-name').textContent = nomComIris;
-                    document.getElementById('com-score').textContent = j.commune.score_global;
-                    document.getElementById('com-acces-info').textContent = j.commune.indice_acces_info;
-                    document.getElementById('com-if-num').textContent = j.commune.indice_acces_interf_num;
-                    document.getElementById('com-cap-if').textContent = j.commune.indice_competences_num;
-                    document.getElementById('com-comp-admin').textContent = j.commune.indice_competences_admin;
-                    let card = document.getElementById('com-card');
+                    document.getElementById('reg-name').textContent = nomReg;
+                    document.getElementById('region-score').textContent = j.region.score_global;
+                    document.getElementById('region-acces-info').textContent = j.region.indice_acces_info;
+                    document.getElementById('region-if-num').textContent = j.region.indice_acces_interf_num;
+                    document.getElementById('region-cap-if').textContent = j.region.indice_competences_num;
+                    document.getElementById('region-comp-admin').textContent = j.region.indice_competences_admin;
+                    let card = document.getElementById('region-card');
                     card.style.display = "";
-                    card.scrollIntoView({behavior: 'smooth', block: 'center'});
 
                     document.getElementById('dept-name').textContent = nomDept;
                     document.getElementById('dept-score').textContent = j.departement.score_global;
@@ -386,14 +389,15 @@
                     card = document.getElementById('dept-card');
                     card.style.display = "";
 
-                    document.getElementById('reg-name').textContent = nomReg;
-                    document.getElementById('region-score').textContent = j.region.score_global;
-                    document.getElementById('region-acces-info').textContent = j.region.indice_acces_info;
-                    document.getElementById('region-if-num').textContent = j.region.indice_acces_interf_num;
-                    document.getElementById('region-cap-if').textContent = j.region.indice_competences_num;
-                    document.getElementById('region-comp-admin').textContent = j.region.indice_competences_admin;
-                    card = document.getElementById('region-card');
+                    document.getElementById('com-name').textContent = nomComIris;
+                    document.getElementById('com-score').textContent = j.commune.score_global;
+                    document.getElementById('com-acces-info').textContent = j.commune.indice_acces_info;
+                    document.getElementById('com-if-num').textContent = j.commune.indice_acces_interf_num;
+                    document.getElementById('com-cap-if').textContent = j.commune.indice_competences_num;
+                    document.getElementById('com-comp-admin').textContent = j.commune.indice_competences_admin;
+                    card = document.getElementById('com-card');
                     card.style.display = "";
+                    card.scrollIntoView({behavior: 'smooth', block: 'center'});
 
                     // Sélectionner la bonne région
                     // Charger le bon département + le sélectionner

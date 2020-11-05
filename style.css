@@ -6,7 +6,10 @@ body{
 }
 
 .title {
-    margin-top: 50px;
+    background-color: #3e7879;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    text-align: center;
 }
 
 .title h1 {
