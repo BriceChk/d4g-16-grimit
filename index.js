@@ -1,24 +1,19 @@
-// Chargement du module http
 const http = require('http');
 const fs = require("fs");
 const path = require('path');
-// Definition du port d'écoute
-const port = 80;
+
 const host = '146.59.196.41';
-/*
-    Création du serveur (createServer)
-    Fonction qui gère les requetes
- */
+const port = 80;
 
 //TODO mettre à jour nb_clicks
 
 const server = http.createServer((req, res) => {
-    var url = req.url;
-    var req_path = decodeURI(url.replace(/^\/+/, "").replace(/\?.*$/, ""));
+    let url = req.url;
+    let req_path = decodeURI(url.replace(/^\/+/, "").replace(/\?.*$/, ""));
     res.writeHead(200);
 
-    var params = new URLSearchParams(url.replace(/^.*\?/, ""));
-    var searchObj = JSON.parse('{"' + decodeURI(params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+    let params = new URLSearchParams(url.replace(/^.*\?/, ""));
+    let searchObj = JSON.parse('{"' + decodeURI(params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 
     if (req_path === "search") {
         if ('code_postal' in searchObj) {
@@ -41,7 +36,7 @@ const server = http.createServer((req, res) => {
                             }
                         });
                         if (found) {
-                            delete region.departements;
+                            region.departements = Object.keys(region.departements);
                             region.nom_reg = k;
                             r.region = region;
                             delete dept.communes;
@@ -167,12 +162,12 @@ const server = http.createServer((req, res) => {
             res.end("Pas les bons parametres");
         }
     } else {
-        var filePath = '.' + req.url;
-        if (filePath == './')
+        let filePath = '.' + req.url;
+        if (filePath === './')
             filePath = './index.html';
 
-        var extname = path.extname(filePath);
-        var contentType = 'text/html';
+        let extname = path.extname(filePath);
+        let contentType = 'text/html';
         switch (extname) {
             case '.js':
                 contentType = 'text/javascript';
@@ -196,7 +191,7 @@ const server = http.createServer((req, res) => {
 
         fs.readFile(filePath, function(error, content) {
             if (error) {
-                if(error.code == 'ENOENT'){
+                if(error.code === 'ENOENT'){
                     fs.readFile('./404.html', function(error, content) {
                         res.writeHead(200, { 'Content-Type': contentType });
                         res.end(content, 'utf-8');
