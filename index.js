@@ -10,6 +10,8 @@ const host = '146.59.196.41';
     Fonction qui gère les requetes
  */
 
+//TODO mettre à jour nb_clicks
+
 const server = http.createServer((req, res) => {
     var url = req.url;
     var req_path = decodeURI(url.replace(/^\/+/, "").replace(/\?.*$/, ""));
@@ -51,6 +53,44 @@ const server = http.createServer((req, res) => {
             }
             if (!found) {
                 res.end("Pas trouvé");
+            }
+        } else {
+            res.end("Pas les bons parametres");
+        }
+    } else if (req_path === "commune") {
+        if ('region' in searchObj && 'departement' in searchObj && 'commune' in searchObj) {
+            let bdd = getBdd();
+            let r = {};
+            let rechReg = searchObj['region'].replaceAll('+', ' ');
+            if (rechReg in bdd) {
+                let region = bdd[rechReg];
+                let rechDep = searchObj['departement'].replaceAll('+', ' ');
+                if (rechDep in region.departements) {
+                    let dep = region.departements[rechDep];
+                    let rechCom = searchObj['commune'].replaceAll('+', ' ');
+                    if (rechCom in dep.communes) {
+                        let com = dep.communes[rechCom];
+
+                        delete region.departements;
+                        delete dep.communes;
+
+                        region.nom_reg = rechReg;
+                        dep.nom_dep = rechDep;
+                        com.id_com = rechCom;
+
+                        r.region = region;
+                        r.departement = dep;
+                        r.commune = com;
+
+                        res.end(JSON.stringify(r));
+                    } else {
+                        res.end("Commune pas trouvé");
+                    }
+                } else {
+                    res.end("Dep pas trouvé");
+                }
+            } else {
+                res.end('Region pas trouvée');
             }
         } else {
             res.end("Pas les bons parametres");
@@ -115,7 +155,11 @@ const server = http.createServer((req, res) => {
             res.end("Pas les bons parametres");
         }
     } else if (req_path === "pdf") {
+        if ('region' in searchObj && 'departement' in searchObj && 'commune' in searchObj) {
 
+        } else {
+            res.end("Pas les bons parametres");
+        }
     } else {
         var filePath = '.' + req.url;
         if (filePath == './')
