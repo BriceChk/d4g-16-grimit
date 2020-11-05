@@ -104,7 +104,7 @@ const server = http.createServer((req, res) => {
             let r = {};
             r.departements = [];
             let bdd = getBdd();
-            let nomRegion = searchObj['region'];
+            let nomRegion = searchObj['region'].replaceAll('+', ' ');
             if (nomRegion in bdd) {
                 let region = bdd[nomRegion];
                 let depts = region.departements;
@@ -160,6 +160,8 @@ const server = http.createServer((req, res) => {
         }
     } else if (req_path === "pdf") {
         if ('region' in searchObj && 'departement' in searchObj && 'commune' in searchObj) {
+
+            //TODO Implémenter la génération du pdf
 
         } else {
             res.end("Pas les bons parametres");
