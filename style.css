@@ -82,17 +82,19 @@ body{
 
 .card h3 {
     font-size: 14px;
-    margin-top: 0px;
+    margin-bottom: 10px;
 }
+
 .card p {
     margin-left : 10px;
     margin-right: 20px;
+
 }
 
 .card-body {
     background-color: #eee;
-    padding-left : 20px;
-    padding-right: 20px;
+    padding: 1em 50px ;
+
 }
 
 .card {
