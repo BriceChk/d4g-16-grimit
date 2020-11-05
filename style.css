@@ -69,7 +69,7 @@ body{
     margin-bottom: 40px;
 }
 
-.menu h2 {
+.menu h2, .card h2 {
     background-color: #4CAF50;
     color: white;
     display: block;
@@ -77,28 +77,29 @@ body{
     padding: 10px;
     font-size: 18px;
     font-weight: 300;
+    margin-top: 20px;
+}
+
+.card h3 {
+    margin-left: 30px;
+    font-size: 14px;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+.card p {
+    margin-left : 50px;
+
+}
+.card-body {
+    background-color: #eee;
 }
 
 .card {
     height: 30%;
     width: auto;
-    display: flex;
-    flex-direction: column;
-    border: 1px #4CAF50 solid;
-    background : #e0ebeb;
 }
 
-.card-header {
-    height: 40%;
-    background: #4CAF50;
-    color: white;
-    text-align: center;
-}
-
-.cardcontainer {
-    padding: 2px 16px;
-    text-align: justify;
-}
 
 li{
     list-style-type: none;
