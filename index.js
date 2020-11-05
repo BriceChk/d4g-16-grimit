@@ -155,9 +155,30 @@ const server = http.createServer((req, res) => {
         }
     } else if (req_path === "pdf") {
         if ('region' in searchObj && 'departement' in searchObj && 'commune' in searchObj) {
+            let bdd = getBdd();
+            let r = {};
+            let rechReg = searchObj['region'].replaceAll('+', ' ');
+            if (rechReg in bdd) {
+                let region = bdd[rechReg];
+                let rechDep = searchObj['departement'].replaceAll('+', ' ');
+                if (rechDep in region.departements) {
+                    let dep = region.departements[rechDep];
+                    let rechCom = searchObj['commune'].replaceAll('+', ' ');
+                    if (rechCom in dep.communes) {
+                        let com = dep.communes[rechCom];
 
-            //TODO Implémenter la génération du pdf
+                        // là t'as region, dep et com pour accéder à leur propriétés
 
+                        res.end("Le pdf");
+                    } else {
+                        res.end("Commune pas trouvé");
+                    }
+                } else {
+                    res.end("Dep pas trouvé");
+                }
+            } else {
+                res.end('Region pas trouvée');
+            }
         } else {
             res.end("Pas les bons parametres");
         }
