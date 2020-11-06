@@ -8,6 +8,15 @@ const port = 80;
 app.use(compression());
 app.use(express.static('public'));
 
+app.get('/*', function (req, res, next) {
+
+    if (req.url.indexOf("/style/") === 0) {
+        res.setHeader("Cache-Control", "public, max-age=2592000");
+        res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+    }
+    next();
+});
+
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/search', function(req, res) {
     if (req.query.code_postal !== '') {
