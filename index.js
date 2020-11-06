@@ -82,6 +82,10 @@ const server = http.createServer((req, res) => {
                         r.commune = com;
 
                         res.end(JSON.stringify(r));
+
+                        let b = getBdd();
+                        b[rechReg]['departements'][rechDep]['communes'][rechCom].nb_clicks++;
+                        fs.writeFileSync('bdd.json', JSON.stringify(b, null, 0));
                     } else {
                         res.end("Commune pas trouvé");
                     }
@@ -165,10 +169,6 @@ const server = http.createServer((req, res) => {
                     let rechCom = searchObj['commune'].replaceAll('+', ' ');
                     if (rechCom in dep.communes) {
                         let com = dep.communes[rechCom];
-
-                        // là t'as region, dep et com pour accéder à leur propriétés
-
-                        // Read HTML Template
                         let html = fs.readFileSync('pdf.html', 'utf8');
 
                         let options = {
@@ -177,26 +177,37 @@ const server = http.createServer((req, res) => {
                             border: "10mm"
                         };
 
+                        let phrase = "Ce score est parmi les plus faibles du pays.";
+                        let s = com.score_global;
+                        if (s >= 210) {
+                            phrase = "Ce score est parmi les plus élevés du pays.";
+                        } else if (s >= 140) {
+                            phrase = "Ce score est situé dans la moitié supérieure nationale.";
+                        } else if (s >= 70) {
+                            phrase = "Ce score est situé dans la moitié inférieure nationale.";
+                        }
+
                         let donnees = {
-                                nom_C: com.nom_com + ' (' + com.nom_iris + ')',
-                                sg_C: com.score_global,
-                                iainf_C: com.indice_acces_info,
-                                iainum_C: com.indice_acces_interf_num,
-                                icadm_C: com.indice_competences_admin,
-                                icnum_C: com.indice_competences_num,
-                                nom_D: rechDep,
-                                sg_D: dep.score_global,
-                                iainf_D: dep.indice_acces_info,
-                                iainum_D: dep.indice_acces_interf_num,
-                                icadm_D: dep.indice_competences_admin,
-                                icnum_D: dep.indice_competences_num,
-                                nom_R: rechReg,
-                                sg_R: region.score_global,
-                                iainf_R: region.indice_acces_info,
-                                iainum_R: region.indice_acces_interf_num,
-                                icadm_R: region.indice_competences_admin,
-                                icnum_R: region.indice_competences_num
-                            };
+                            nom_C: com.nom_com + ' (' + com.nom_iris + ')',
+                            sg_C: com.score_global,
+                            iainf_C: com.indice_acces_info,
+                            iainum_C: com.indice_acces_interf_num,
+                            icadm_C: com.indice_competences_admin,
+                            icnum_C: com.indice_competences_num,
+                            phrase: phrase,
+                            nom_D: rechDep,
+                            sg_D: dep.score_global,
+                            iainf_D: dep.indice_acces_info,
+                            iainum_D: dep.indice_acces_interf_num,
+                            icadm_D: dep.indice_competences_admin,
+                            icnum_D: dep.indice_competences_num,
+                            nom_R: rechReg,
+                            sg_R: region.score_global,
+                            iainf_R: region.indice_acces_info,
+                            iainum_R: region.indice_acces_interf_num,
+                            icadm_R: region.indice_competences_admin,
+                            icnum_R: region.indice_competences_num
+                        };
 
                         let document = {
                             html: html,
