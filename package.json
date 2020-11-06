@@ -2,7 +2,7 @@
   "name": "d4g-16-grimit",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server_express.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
     "pdf-creator-node": "^1.4.1"
   }
 }
