@@ -49,7 +49,7 @@ const server = http.createServer((req, res) => {
                     });
                 });
             } catch (e) {
-                if (e.message !== 'break') throw e;
+
             }
             if (!found) {
                 res.end("Pas trouvé");
