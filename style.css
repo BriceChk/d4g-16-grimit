@@ -6,7 +6,7 @@ body{
 }
 
 .title {
-    background-color: #3e7879;
+    background-color: #2C313A;
     padding-top: 5px;
     padding-bottom: 20px;
     text-align: center;
@@ -126,10 +126,6 @@ body{
     box-shadow: 0 0 5px #1A1D23;
 }
 
-.card #header-line {
-    margin-left: 0;
-}
-
 button {
     background-color: #305E5F;
     color: #F3F4F6;
@@ -158,10 +154,10 @@ button {
 }
 
 button:hover {
-    background-color: #3e7879;
+    background-color: #448484;
 }
 
-.div_pop_up{
+#div_pop_up{
     position: fixed;
     bottom: 0;
     width: 100%;

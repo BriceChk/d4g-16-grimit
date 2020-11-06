@@ -1,20 +1,14 @@
-const http = require('https');
+const http = require('http');
 const fs = require("fs");
 const path = require('path');
 let pdf = require("pdf-creator-node");
 
 const host = '146.59.196.41';
-const port = 443;
-
-const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/d4g-16.bricechk.fr/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/d4g-16.bricechk.fr/fullchain.pem'),
-    ca: fs.readFileSync('/etc/letsencrypt/live/d4g-16.bricechk.fr/chain.pem')
-}
+const port = 80;
 
 //TODO mettre à jour nb_clicks
 
-const server = http.createServer(options, (req, res) => {
+const server = http.createServer((req, res) => {
     let url = req.url;
     let req_path = decodeURI(url.replace(/^\/+/, "").replace(/\?.*$/, ""));
     res.writeHead(200);
