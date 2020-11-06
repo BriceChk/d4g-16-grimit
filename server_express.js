@@ -6,7 +6,6 @@ const compression = require('compression');
 
 const port = 80;
 app.use(compression());
-app.use(express.static('public'));
 
 app.get('/*', function (req, res, next) {
 
@@ -16,6 +15,8 @@ app.get('/*', function (req, res, next) {
     }
     next();
 });
+
+app.use(express.static('public'));
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/search', function(req, res) {
